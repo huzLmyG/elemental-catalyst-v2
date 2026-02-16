@@ -126,6 +126,52 @@
       border-color: #a855f7;
     }
 
+    /* ─── GAME DESCRIPTION BOX ─── */
+    .game-desc {
+      max-width: 520px;
+      margin: 14px auto 8px;
+      background: rgba(8, 18, 32, 0.85);
+      border: 1px solid #1a2a3a;
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-align: left;
+      font: 11px/1.65 'Rajdhani', sans-serif;
+      color: #7a9ab0;
+      backdrop-filter: blur(6px);
+    }
+
+    .game-desc h3 {
+      margin: 0 0 6px 0;
+      font: bold 13px 'Share Tech Mono', monospace;
+      color: #f4c542;
+      letter-spacing: 1px;
+    }
+
+    .game-desc .gd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 14px;
+      margin-top: 8px;
+    }
+
+    .game-desc .gd-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 10.5px;
+      line-height: 1.45;
+    }
+
+    .game-desc .gd-item .gd-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .game-desc .gd-item b {
+      color: #c0d0e0;
+    }
+
     /* ─── LOBBY ─── */
     #lobby {
       background: radial-gradient(ellipse at 50% 60%, #0c1828 0%, #030608 100%);
@@ -648,11 +694,127 @@
       transform: scale(1.08);
     }
 
-    .train-el-btn.active {
-      background: rgba(40, 70, 100, .5);
-      box-shadow: 0 0 14px currentColor;
-      transform: scale(1.12);
-      border-width: 2.5px;
+    /* Instruction Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 10, 15, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 40px;
+      color: #acc2d1;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .modal-content {
+      max-width: 800px;
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-h {
+      font-size: 24px;
+      color: #f4c542;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 10px;
+    }
+
+    .modal-section {
+      margin-bottom: 24px;
+    }
+
+    .modal-section h3 {
+      color: #4fc3f7;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .modal-section p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .kbd {
+      background: #1e293b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 12px;
+      border: 1px solid #334155;
+    }
+
+    .reaction-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .reaction-item {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    /* Draft Card Hover Preview */
+    .card {
+      position: relative;
+    }
+
+    #cardPreview {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 100%;
+      margin-top: 10px;
+      width: 280px;
+      z-index: 100;
+      background: rgba(8, 15, 26, 0.96);
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: #acc2d1;
+      pointer-events: none;
+      line-height: 1.5;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    #cardPreview .cp-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    #cardPreview .cp-sk {
+      margin-bottom: 5px;
+    }
+
+    #cardPreview .cp-sk b {
+      font-size: 11px;
+    }
+
+    #cardPreview .cp-fus {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #1e293b;
+    }
+
+    #cardPreview .cp-fus b {
+      color: #c084fc;
     }
   </style>
 </head>
@@ -665,6 +827,38 @@
     <div class="gsub">PROTOTYPE v1.4</div>
     <div class="gtitle">ELEMENTAL CATALYST</div>
     <div class="gsub" style="color:#2a4050;letter-spacing:2px">7 ELEMENTAL BOSSES · ONLINE CO-OP · DRAFT-SYSTEM</div>
+
+    <div class="game-desc">
+      <h3>⚔ WIE SPIELT MAN?</h3>
+      <p style="margin:0 0 4px 0">
+        Wähle im <b style="color:#f4c542">Draft-System</b> 2 Elemente und kombiniere sie zu einzigartigen Skills.
+        Besiege <b style="color:#ef4444">Wächter</b>, um den Boss freizuschalten, dann kämpfe gegen den
+        <b style="color:#c084fc">Elementar-Boss</b> durch 3 Phasen.
+      </p>
+      <div class="gd-grid">
+        <div class="gd-item">
+          <span class="gd-icon">🎴</span>
+          <span><b>Draft:</b> Wähle Primär- & Sekundär-Element. Jede Kombi ergibt eine andere Fusion (R-Skill)!</span>
+        </div>
+        <div class="gd-item">
+          <span class="gd-icon">💀</span>
+          <span><b>Bosskampf:</b> 3 Phasen — der Boss wird aggressiver und nutzt ab Phase 2 Zusatz-Elemente!</span>
+        </div>
+        <div class="gd-item">
+          <span class="gd-icon">🔥</span>
+          <span><b>Elemente:</b> Feuer > Natur > Wasser > Feuer. Licht ↔ Dunkelheit (2×). Richtig wählen = doppelter
+            Schaden!</span>
+        </div>
+        <div class="gd-item">
+          <span class="gd-icon">💊</span>
+          <span><b>Buff-Orbs:</b> Besiegte Gegner droppen Wut, Hast, Fokus oder Vita-Orbs für temporäre Boosts!</span>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:10px;color:#3a5060;text-align:center">
+        WASD = Bewegen · Maus = Zielen · LMB/RMB/Q/E = Skills · R = Fusion · SPACE = Dash
+      </div>
+    </div>
+
     <div class="menu-btns">
       <button class="mbtn primary" onclick="goSolo()">⚔ SOLO SPIELEN</button>
       <button class="mbtn" onclick="goTraining()"
@@ -834,22 +1028,52 @@
           sk('fl1', 'Feuerball', 'fire', 30, .55, 'Explodiert bei Aufprall.', 'BURN 2s', 'Burst-Schaden.', { t: 'proj', speed: 510, r: 9, aoe: 36, burn: { d: 8, dur: 2 }, tags: ['EXPLOSIV'] }),
           sk('fl2', 'Flammenwerfer', 'fire', 16, .10, 'Kegelstrahl, kurze Reichweite.', 'BURN schnell', 'Nahkampf.', { t: 'beam', range: 140, cA: .46, burn: { d: 12, dur: 2 }, tags: ['KEGEL'] }),
           sk('fl3', 'Funkenflug', 'fire', 13, .65, '3 Funken, Streuschuss.', 'BURN 2s', 'Streuung.', { t: 'multi', cnt: 3, spr: .5, speed: 449, r: 7, burn: { d: 5, dur: 2 }, tags: ['SCHROT'] }),
+          sk('fl4', 'Glutsplitter', 'fire', 17, .41, 'Schnelles Projektil, brennt nach.', 'BURN 2s', 'Wächter.', { t: 'proj', speed: 490, r: 8, burn: { d: 6, dur: 2 }, tags: ['SCHNELL'] }),
+          sk('fl5', 'Infernopfeil', 'fire', 33, .57, 'Kegelstrahl, hoher Schaden.', 'BURN 2s', 'Zerstörer.', { t: 'beam', range: 150, cA: .40, burn: { d: 10, dur: 2 }, tags: ['KEGEL'] }),
+          sk('fl6', 'Lavawelle', 'fire', 26, .58, 'Langsames Projektil, große Reichweite.', 'BURN 2s', 'Bewahrer.', { t: 'proj', speed: 380, r: 11, burn: { d: 7, dur: 2 }, tags: ['REICHWEITE'] }),
+          sk('fl7', 'Kohlenschlag', 'fire', 26, .70, 'Kegelstrahl, taktisch einsetzbar.', 'BURN 2s', 'Taktiker.', { t: 'beam', range: 150, cA: .38, burn: { d: 8, dur: 2 }, tags: ['KEGEL'] }),
+          sk('fl8', 'Zunderfunken', 'fire', 30, .45, 'Schnelle Projektile, hoher DPS.', 'BURN 2s', 'Plänkler.', { t: 'proj', speed: 520, r: 7, burn: { d: 9, dur: 2 }, tags: ['SCHNELL'] }),
+          sk('fl9', 'Essensturm', 'fire', 22, .74, 'Kegelstrahl, breiter Bereich.', 'BURN 2s', 'Wächter.', { t: 'beam', range: 150, cA: .50, burn: { d: 6, dur: 2 }, tags: ['KEGEL'] }),
         ], rmb: [
           sk('fr1', 'Pyro-Schlag', 'fire', 95, 8, 'Riesige Kugel, aufladbar, massiver Splash.', 'BURN 4s', 'Maximaler Dmg.', { t: 'proj', speed: 240, r: 24, aoe: 90, burn: { d: 15, dur: 4 }, tags: ['AUFGELADEN'] }),
           sk('fr2', 'Drachenatem', 'fire', 22, 7, 'Kanalisierter Strahl, Rückstoß.', 'BURN+KB', 'Abstand.', { t: 'beam', range: 320, cA: .28, kb: 120, burn: { d: 10, dur: 3 }, tags: ['KANAL'] }),
           sk('fr3', 'Meteor-Ruf', 'fire', 115, 9, 'Markiert Boden, 1.5s Einschlag.', 'BURN+STUN', 'Verheerend.', { t: 'daoe', delay: 1.5, r: 85, burn: { d: 15, dur: 4 }, stun: .8, tags: ['TELEGRAPHED'] }),
+          sk('fr4', 'Glutkugel', 'fire', 97, 6, 'Sofortiger schwerer Treffer, AoE 80.', 'BURN 3s', 'Wächter.', { t: 'proj', speed: 360, r: 16, aoe: 80, burn: { d: 12, dur: 3 }, tags: ['SOFORT'] }),
+          sk('fr5', 'Infernoramme', 'fire', 92, 6.3, 'Sofortiger Aufschlag, Fläche 80.', 'BURN 3s', 'Zerstörer.', { t: 'proj', speed: 340, r: 18, aoe: 80, burn: { d: 14, dur: 3 }, tags: ['SOFORT'] }),
+          sk('fr6', 'Lavabrocken', 'fire', 94, 4.2, 'Aufladbar, hoher Einzelschaden.', 'BURN 3s', 'Bewahrer.', { t: 'proj', speed: 280, r: 20, burn: { d: 12, dur: 3 }, tags: ['AUFGELADEN'] }),
+          sk('fr7', 'Kohlenbombe', 'fire', 67, 4.3, 'Aufladbar, schneller CD.', 'BURN 2s', 'Taktiker.', { t: 'proj', speed: 300, r: 14, burn: { d: 8, dur: 2 }, tags: ['AUFGELADEN'] }),
+          sk('fr8', 'Zunderkanone', 'fire', 109, 7.2, 'Aufladbar, maximaler Schaden.', 'BURN 4s', 'Plänkler.', { t: 'proj', speed: 260, r: 22, burn: { d: 16, dur: 4 }, tags: ['AUFGELADEN'] }),
+          sk('fr9', 'Essenschlag', 'fire', 107, 5, 'Sofortschlag, großer AoE.', 'BURN 3s', 'Wächter.', { t: 'proj', speed: 380, r: 18, aoe: 80, burn: { d: 13, dur: 3 }, tags: ['SOFORT'] }),
         ], q: [
           sk('fq1', 'Feuerwand', 'fire', 0, 10, 'Linie am Boden, verbrennt alles darin.', 'BURN-ZONE 5s', 'Barriere.', { t: 'wall', ww: 220, wh: 14, burn: { d: 12 }, life: 5, tags: ['TERRAIN'] }),
           sk('fq2', 'Phoenix-Dash', 'fire', 28, 9, 'Dash vorwärts, hinterlässt Feuerspur.', 'BURN 3s+Spur', 'I-Frames.', { t: 'dashSkill', range: 190, burn: { d: 8, dur: 3 }, tags: ['DASH'] }),
           sk('fq3', 'Hitzewelle', 'fire', 55, 11, '360° Explosion, Rückstoß.', 'BURN+KB', 'Nahkampf.', { t: 'aoe', r: 115, kb: 155, burn: { d: 10, dur: 2 }, tags: ['360°'] }),
+          sk('fq4', 'Glutmantel', 'fire', 0, 9.4, 'AoE Slow im Bereich.', 'SLOW 2s', 'Wächter.', { t: 'aoe', r: 150, slow: { f: .5, dur: 2 }, burn: { d: 5, dur: 2 }, tags: ['CC'] }),
+          sk('fq5', 'Infernolauf', 'fire', 3, 10.2, 'AoE Slow-Explosion.', 'SLOW 2s', 'Zerstörer.', { t: 'aoe', r: 150, slow: { f: .5, dur: 2 }, burn: { d: 6, dur: 2 }, tags: ['CC'] }),
+          sk('fq6', 'Lavawall', 'fire', 4, 10.6, 'Dash durch Lava, hinterlässt Spur.', 'BURN+DASH', 'Bewahrer.', { t: 'dashSkill', range: 250, burn: { d: 8, dur: 2 }, tags: ['DASH'] }),
+          sk('fq7', 'Kohlenrauch', 'fire', 0, 10.9, 'Rauch-Dash, Gegner verlieren Sicht.', 'DASH+BLIND', 'Taktiker.', { t: 'dashSkill', range: 250, blind: 1.5, tags: ['DASH'] }),
+          sk('fq8', 'Zunderspur', 'fire', 8, 11.5, 'Erzeugt Feuerschild +50 HP.', 'SCHILD 50HP', 'Plänkler.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
+          sk('fq9', 'Essenpanzer', 'fire', 12, 8.4, 'Feuerschild absorbiert +50 HP.', 'SCHILD 50HP', 'Wächter.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
         ], e: [
           sk('fe1', 'Lebende Bombe', 'fire', 75, 10, 'Klebt an Gegner, explodiert nach 3s.', 'KETTEN-EXPLOSION', 'Setup.', { t: 'proj', speed: 460, r: 9, bomb: { delay: 3, r: 70, burn: { d: 15, dur: 3 } }, tags: ['BOMBE'] }),
           sk('fe2', 'Magma-Pfütze', 'fire', 0, 11, 'Dauerpfütze, 12/s DoT.', 'BURN-ZONE 6s', 'Zoning.', { t: 'zone', r: 85, life: 6, dmgTick: 12, burn: { d: 8, dur: 2 }, tags: ['ZONE'] }),
           sk('fe3', 'Überhitzung', 'fire', 0, 12, '6s +50% Schaden, aber -4HP/s Selbstschaden.', 'DMGBUFF+SelfDoT', 'Glaskanone.', { t: 'buff', dmgBuff: { f: 1.5, dur: 6 }, selfDot: { d: 4, dur: 6 }, tags: ['BUFF'] }),
+          sk('fe4', 'Glutsee', 'fire', 40, 12.6, 'Projektil schwächt getroffenen Gegner.', 'WEAKNESS 4s', 'Wächter.', { t: 'proj', speed: 380, r: 12, weakness: { f: .7, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('fe5', 'Infernokrater', 'fire', 40, 13.6, 'Projektil schwächt Gegner massiv.', 'WEAKNESS 4s', 'Zerstörer.', { t: 'proj', speed: 360, r: 12, weakness: { f: .6, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('fe6', 'Lavabecken', 'fire', 0, 10.1, 'Bleibende Schadenszone 6s, 15/tick.', 'ZONE 6s', 'Bewahrer.', { t: 'zone', r: 120, life: 6, dmgTick: 15, burn: { d: 6, dur: 2 }, tags: ['ZONE'] }),
+          sk('fe7', 'Kohlenwolke', 'fire', 0, 14, 'Rauchwolke, schadet 15/tick 6s.', 'ZONE 6s', 'Taktiker.', { t: 'zone', r: 120, life: 6, dmgTick: 15, burn: { d: 6, dur: 2 }, tags: ['ZONE'] }),
+          sk('fe8', 'Zunderpfad', 'fire', 0, 10.7, 'Beschwört einen Feuer-Minion.', 'MINION', 'Plänkler.', { t: 'special', summonMinion: true, minionEl: 'fire', tags: ['MINION'] }),
+          sk('fe9', 'Essenschmelze', 'fire', 0, 14.6, 'Beschwört einen Lava-Helfer.', 'MINION', 'Wächter.', { t: 'special', summonMinion: true, minionEl: 'fire', tags: ['MINION'] }),
         ], passive: [
           sk('fp1', 'Inneres Feuer', 'fire', 0, 0, 'Unter 30% HP: +50% Schaden.', '+50% Dmg (30% HP)', 'Glaskanone.', { t: 'passive', pid: 'innerfire' }),
           sk('fp2', 'Brandstifter', 'fire', 0, 0, 'Crits setzen Gegner in Brand (+50% Burn).', 'Crits→BURN +50%', 'DPS.', { t: 'passive', pid: 'brand' }),
           sk('fp3', 'Asche zu Asche', 'fire', 0, 0, 'Gegner sterben → kleine Explosion.', 'On-Kill Explosion', 'Kettenreaktion.', { t: 'passive', pid: 'asche' }),
+          sk('fp4', 'Feuerpuls', 'fire', 0, 0, 'Gegner-Kill heilt dich um 15 HP.', '+15 HP on Kill', 'Wächter.', { t: 'passive', pid: 'feuerpuls', killHeal: 15 }),
+          sk('fp5', 'Gluthaut', 'fire', 0, 0, '+20% Elementarschaden.', '+20% Elem Dmg', 'Zerstörer.', { t: 'passive', pid: 'gluthaut', elemDmg: 1.2 }),
+          sk('fp6', 'Brandsiegel', 'fire', 0, 0, '+30 Max HP.', '+30 Max HP', 'Bewahrer.', { t: 'passive', pid: 'brandsiegel', bonusHP: 30 }),
+          sk('fp7', 'Aschewille', 'fire', 0, 0, 'Alle Cooldowns -15%.', '-15% CDs', 'Taktiker.', { t: 'passive', pid: 'aschewille', cdReduce: .15 }),
+          sk('fp8', 'Infernopräsenz', 'fire', 0, 0, '+15% Bewegungsspeed.', '+15% Speed', 'Plänkler.', { t: 'passive', pid: 'infpraes', spdMult: 1.15 }),
+          sk('fp9', 'Pyromanie', 'fire', 0, 0, 'Angreifer erleiden 10 Feuerschaden.', '10 Thorns', 'Wächter.', { t: 'passive', pid: 'pyromania', thorns: 10 }),
         ]
       },
       water: {
@@ -857,22 +1081,52 @@
           sk('wl1', 'Wasser-Geschoss', 'water', 21, .60, 'Prallt 1× von Wänden ab.', 'PRALL', 'Winkel.', { t: 'proj', speed: 462, r: 10, bounce: true, tags: ['PRALL'] }),
           sk('wl2', 'Blase', 'water', 17, .70, 'Langsam, sucht Ziel (Homing). +10 Heal.', 'HOMING+HEAL', 'Sicher.', { t: 'proj', speed: 200, r: 12, homing: true, healHit: 10, tags: ['HOMING'] }),
           sk('wl3', 'Wasser-Peitsche', 'water', 24, .65, 'Nahkampf-Arc, Slow 2s. +6 Heal.', 'SLOW+HEAL', 'Melee.', { t: 'aoe', r: 90, slow: { f: .55, dur: 2 }, healHit: 6, tags: ['NAHKAMPF'] }),
+          sk('wl4', 'Eissplitter', 'water', 30, .60, 'Schnelles Eisprojektil.', 'kein Status', 'Wächter.', { t: 'proj', speed: 480, r: 9, tags: ['SCHNELL'] }),
+          sk('wl5', 'Frostnadel', 'water', 20, .71, 'Kegelstrahl, Frost-Effekt.', 'SLOW 1s', 'Zerstörer.', { t: 'beam', range: 150, cA: .40, slow: { f: .5, dur: 1 }, tags: ['KEGEL'] }),
+          sk('wl6', 'Strudelschuss', 'water', 29, .62, 'Projektil mit Heileffekt.', '+5 HEAL', 'Bewahrer.', { t: 'proj', speed: 440, r: 10, healHit: 5, tags: ['HEILUNG'] }),
+          sk('wl7', 'Tiefseestrahl', 'water', 18, .67, 'Kegelstrahl, verlangsamt.', 'SLOW 1.5s', 'Taktiker.', { t: 'beam', range: 150, cA: .38, slow: { f: .4, dur: 1.5 }, tags: ['KEGEL'] }),
+          sk('wl8', 'Gischtpfeil', 'water', 18, .49, 'Schnelles Projektil, niedriger CD.', 'kein Status', 'Plänkler.', { t: 'proj', speed: 530, r: 8, tags: ['SCHNELL'] }),
+          sk('wl9', 'Eisstachel', 'water', 22, .76, 'Kegelstrahl, breiter Winkel.', 'SLOW 1s', 'Wächter.', { t: 'beam', range: 150, cA: .48, slow: { f: .4, dur: 1 }, tags: ['KEGEL'] }),
         ], rmb: [
           sk('wr1', 'Tsunami', 'water', 55, 10, 'Breite Welle, wäscht Gegner weg.', 'KB 200', 'Pusher.', { t: 'proj', speed: 360, r: 30, kb: 200, tags: ['WELLE'] }),
           sk('wr2', 'Hochdruck', 'water', 50, 8, 'Dünner Strahl, durchdringt Gegner.', 'PIERCE+SLOW', 'Anti-Alles.', { t: 'beam', range: 390, cA: .09, pierce: true, slow: { f: .5, dur: 3 }, tags: ['PIERCE'] }),
           sk('wr3', 'Heil-Bombe', 'water', 34, 10, 'Kugel heilt Freunde, schadet Feinden.', 'HEAL +35 AoE', 'Dual.', { t: 'proj', speed: 435, r: 18, aoe: 65, healHit: 35, tags: ['HEILUNG'] }),
+          sk('wr4', 'Eisblock', 'water', 107, 7, 'Soforttreffer mit AoE 80.', 'SLOW 2s', 'Wächter.', { t: 'proj', speed: 340, r: 18, aoe: 80, slow: { f: .5, dur: 2 }, tags: ['SOFORT'] }),
+          sk('wr5', 'Froststoß', 'water', 65, 6.8, 'Sofort-AoE, Frostschaden.', 'SLOW 2s', 'Zerstörer.', { t: 'proj', speed: 360, r: 16, aoe: 80, slow: { f: .6, dur: 2 }, tags: ['SOFORT'] }),
+          sk('wr6', 'Strudelball', 'water', 108, 7.6, 'Aufladbar, massiver Schaden.', 'SLOW 3s', 'Bewahrer.', { t: 'proj', speed: 280, r: 20, slow: { f: .5, dur: 3 }, tags: ['AUFGELADEN'] }),
+          sk('wr7', 'Tiefseebombe', 'water', 91, 4.9, 'Aufladbar, schneller CD.', 'SLOW 2s', 'Taktiker.', { t: 'proj', speed: 300, r: 16, slow: { f: .4, dur: 2 }, tags: ['AUFGELADEN'] }),
+          sk('wr8', 'Gischtkanone', 'water', 101, 4.8, 'Aufladbar, hoher DPS.', 'SLOW 2s', 'Plänkler.', { t: 'proj', speed: 320, r: 18, slow: { f: .5, dur: 2 }, tags: ['AUFGELADEN'] }),
+          sk('wr9', 'Eiskoloss', 'water', 73, 4.6, 'Sofort-AoE, breiter Bereich.', 'SLOW 2s', 'Wächter.', { t: 'proj', speed: 380, r: 16, aoe: 80, slow: { f: .5, dur: 2 }, tags: ['SOFORT'] }),
         ], q: [
           sk('wq1', 'Geysir', 'water', 44, 10, 'Telegraph 0.6s, Stun 1.5s.', 'STUN 1.5s', 'Setup.', { t: 'daoe', delay: .6, r: 68, stun: 1.5, dmg: 44, tags: ['TELEGRAPHED', 'STUN'] }),
           sk('wq2', 'Riptide', 'water', 20, 12, 'Zieht Gegner in einen Strudel.', 'PULL', 'Combo.', { t: 'aoe', r: 140, pull: 200, tags: ['PULL'] }),
           sk('wq3', 'Reinigender Nebel', 'water', 0, 12, 'Entfernt alle Debuffs von dir.', 'CLEANSE', 'Konter.', { t: 'buff', cleanse: true, tags: ['CLEANSE'] }),
+          sk('wq4', 'Eisschild', 'water', 10, 8.9, 'AoE-Stun im Bereich.', 'STUN 2s', 'Wächter.', { t: 'aoe', r: 150, stun: 2, tags: ['CC'] }),
+          sk('wq5', 'Frostmantel', 'water', 13, 8.4, 'AoE-Stun, höherer Schaden.', 'STUN 2s', 'Zerstörer.', { t: 'aoe', r: 150, stun: 2, tags: ['CC'] }),
+          sk('wq6', 'Strudelsog', 'water', 6, 10.1, 'Wasser-Dash mit Heileffekt.', 'DASH+HEAL', 'Bewahrer.', { t: 'dashSkill', range: 250, healHit: 15, tags: ['DASH'] }),
+          sk('wq7', 'Tiefenseele', 'water', 8, 10.3, 'Dash hinterlässt Slow-Zone.', 'DASH+SLOW', 'Taktiker.', { t: 'dashSkill', range: 250, slow: { f: .5, dur: 2 }, tags: ['DASH'] }),
+          sk('wq8', 'Gischtsprung', 'water', 16, 10.4, 'Erzeugt Wasserschild +50 HP.', 'SCHILD 50HP', 'Plänkler.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
+          sk('wq9', 'Eislauf', 'water', 4, 10.6, 'Eisschild absorbiert +50 HP.', 'SCHILD 50HP', 'Wächter.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
         ], e: [
           sk('we1', 'Gefängnis', 'water', 25, 12, 'Schließt Gegner 3s ein (kampfunfähig).', 'BANISH 3s', 'Isolation.', { t: 'proj', speed: 380, r: 12, banish: 3, tags: ['BANISH'] }),
           sk('we2', 'Heilender Regen', 'water', 0, 14, 'Zone heilt 10HP/s für 6s.', 'HEAL-ZONE 6s', 'Sustain.', { t: 'zone', r: 80, healZ: { a: 10, iv: 1 }, life: 6, tags: ['HEILUNG'] }),
           sk('we3', 'Spiegel-Schild', 'water', 0, 13, 'Reflektiert nächstes Projektil 3s.', 'REFLEKTION 3s', 'Konter.', { t: 'buff', reflectDur: 3, tags: ['SCHILD'] }),
+          sk('we4', 'Eisfläche', 'water', 40, 10.8, 'Projektil schwächt Gegner.', 'WEAKNESS 4s', 'Wächter.', { t: 'proj', speed: 380, r: 12, weakness: { f: .7, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('we5', 'Frostzone', 'water', 40, 14.9, 'Projektil, starker Debuff.', 'WEAKNESS 4s', 'Zerstörer.', { t: 'proj', speed: 360, r: 12, weakness: { f: .6, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('we6', 'Strudelgrube', 'water', 0, 11, 'Bleibende Zone, 15/tick 6s.', 'ZONE 6s', 'Bewahrer.', { t: 'zone', r: 120, life: 6, dmgTick: 15, slow: { f: .4, dur: 1 }, tags: ['ZONE'] }),
+          sk('we7', 'Tiefseegraben', 'water', 0, 12.5, 'Tiefsee-Zone, schadet+slowed.', 'ZONE 6s', 'Taktiker.', { t: 'zone', r: 120, life: 6, dmgTick: 15, slow: { f: .5, dur: 1 }, tags: ['ZONE'] }),
+          sk('we8', 'Gischtfeld', 'water', 0, 13.4, 'Beschwört Wasser-Minion.', 'MINION', 'Plänkler.', { t: 'special', summonMinion: true, minionEl: 'water', tags: ['MINION'] }),
+          sk('we9', 'Eisformation', 'water', 0, 11.3, 'Beschwört Eis-Helfer.', 'MINION', 'Wächter.', { t: 'special', summonMinion: true, minionEl: 'water', tags: ['MINION'] }),
         ], passive: [
           sk('wp1', 'Fluss', 'water', 0, 0, 'Team-CDs -10%.', 'Team-CDs -10%', 'Utility.', { t: 'passive', pid: 'fluss', cdReduce: .10 }),
           sk('wp2', 'Rutschbahn', 'water', 0, 0, 'Du und Team +20% Speed.', '+20% Speed', 'Kite.', { t: 'passive', pid: 'rutsch', spdMult: 1.2 }),
-          sk('wp3', 'Regen', 'water', 0, 0, 'Passiv +3HP/s Regeneration.', '+3HP/s', 'Sustain.', { t: 'passive', pid: 'hregen', hpRegen: 3 }),
+          sk('wp3', 'Nässe', 'water', 0, 0, 'Gegner erleiden +15% Schaden durch Blitz/Eis.', '+15% Vuln', 'Debuff.', { t: 'passive', pid: 'naesse', wetVuln: .15 }),
+          sk('wp4', 'Flutzeichen', 'water', 0, 0, 'Gegner-Kill heilt dich um 15 HP.', '+15 HP on Kill', 'Wächter.', { t: 'passive', pid: 'flutzeichen', killHeal: 15 }),
+          sk('wp5', 'Eisader', 'water', 0, 0, '+20% Elementarschaden.', '+20% Elem Dmg', 'Zerstörer.', { t: 'passive', pid: 'eisader', elemDmg: 1.2 }),
+          sk('wp6', 'Meeresseele', 'water', 0, 0, '+30 Max HP.', '+30 Max HP', 'Bewahrer.', { t: 'passive', pid: 'meeresseele', bonusHP: 30 }),
+          sk('wp7', 'Tauchreflex', 'water', 0, 0, 'Alle Cooldowns -15%.', '-15% CDs', 'Taktiker.', { t: 'passive', pid: 'tauchreflex', cdReduce: .15 }),
+          sk('wp8', 'Strömungssinn', 'water', 0, 0, '+15% Bewegungsspeed.', '+15% Speed', 'Plänkler.', { t: 'passive', pid: 'stroem', spdMult: 1.15 }),
+          sk('wp9', 'Tiefenruf', 'water', 0, 0, 'Angreifer erleiden 10 Schaden.', '10 Thorns', 'Wächter.', { t: 'passive', pid: 'tiefenruf', thorns: 10 }),
         ]
       },
       earth: {
@@ -880,22 +1134,52 @@
           sk('el1', 'Felsbrocken', 'earth', 38, .90, 'Bogenwurf, kleiner Stun 0.8s.', 'STUN 0.8s', 'Über Wände.', { t: 'proj', speed: 516, r: 14, arc: true, stun: .8, tags: ['BOGEN'] }),
           sk('el2', 'Steinfaust', 'earth', 42, .90, 'Nahkampf-Hieb, starker Rückstoß.', 'KB 175', 'Interrupt.', { t: 'aoe', r: 86, kb: 175, tags: ['NAHKAMPF'] }),
           sk('el3', 'Kiesel-Schrot', 'earth', 14, .80, '5 Steine, Streuschuss kurze Distanz.', 'kein Status', 'DPS-Streuung.', { t: 'multi', cnt: 5, spr: .55, speed: 433, r: 7, tags: ['SCHROT'] }),
+          sk('el4', 'Granitschuss', 'earth', 24, .61, 'Schwerer Projektilschuss.', 'STUN 0.5s', 'Wächter.', { t: 'proj', speed: 460, r: 12, stun: .5, tags: ['SCHWER'] }),
+          sk('el5', 'Kieselhagel', 'earth', 31, .66, 'Kegelstrahl, Stein-Splitter.', 'kein Status', 'Zerstörer.', { t: 'beam', range: 150, cA: .42, tags: ['KEGEL'] }),
+          sk('el6', 'Sandpfeil', 'earth', 11, .75, 'Projektil, bremst Gegner.', 'SLOW 1s', 'Bewahrer.', { t: 'proj', speed: 430, r: 10, slow: { f: .4, dur: 1 }, tags: ['SLOW'] }),
+          sk('el7', 'Basaltkegel', 'earth', 33, .66, 'Kegelstrahl, hoher Schaden.', 'kein Status', 'Taktiker.', { t: 'beam', range: 150, cA: .40, tags: ['KEGEL'] }),
+          sk('el8', 'Quarznadel', 'earth', 29, .48, 'Schnelles Projektil, Piercing.', 'PIERCE', 'Plänkler.', { t: 'proj', speed: 540, r: 8, pierce: true, tags: ['SCHNELL'] }),
+          sk('el9', 'Geröllsturm', 'earth', 15, .78, 'Kegelstrahl, breiter Bereich.', 'kein Status', 'Wächter.', { t: 'beam', range: 150, cA: .50, tags: ['KEGEL'] }),
         ], rmb: [
           sk('er1', 'Stampfer', 'earth', 60, 10, 'Telegraph 0.7s Stun-AoE.', 'STUN 2s', 'CC-Anker.', { t: 'daoe', delay: .7, r: 120, stun: 2, dmg: 60, tags: ['TELEGRAPHED', 'STUN'] }),
           sk('er2', 'Boulder Roll', 'earth', 68, 9, 'Du rollst, überrennst Gegner.', 'KB 200', 'Ramme.', { t: 'dashSkill', range: 265, kb: 200, tags: ['DASH'] }),
           sk('er3', 'Stalaktit', 'earth', 74, 9, '0.8s Delay, Airborne 2s.', 'AIRBORNE 2s', 'Kombo.', { t: 'daoe', delay: .8, r: 50, stun: 2, dmg: 74, tags: ['TELEGRAPHED'] }),
+          sk('er4', 'Granitkugel', 'earth', 100, 4.7, 'Sofort, massiver AoE 80.', 'KB 100', 'Wächter.', { t: 'proj', speed: 340, r: 18, aoe: 80, kb: 100, tags: ['SOFORT'] }),
+          sk('er5', 'Kieselsturm', 'earth', 108, 6.6, 'Sofort, Steinregen trifft breit.', 'STUN 1s', 'Zerstörer.', { t: 'proj', speed: 360, r: 16, aoe: 80, stun: 1, tags: ['SOFORT'] }),
+          sk('er6', 'Sandblock', 'earth', 80, 7.2, 'Aufladbar, durchdringt Deckung.', 'KB 80', 'Bewahrer.', { t: 'proj', speed: 280, r: 20, kb: 80, tags: ['AUFGELADEN'] }),
+          sk('er7', 'Basaltbombe', 'earth', 81, 5.4, 'Aufladbar, schneller CD.', 'STUN 0.8s', 'Taktiker.', { t: 'proj', speed: 300, r: 16, stun: .8, tags: ['AUFGELADEN'] }),
+          sk('er8', 'Quarzgeschoss', 'earth', 96, 4.2, 'Aufladbar, höchster Einzelschaden.', 'KB 120', 'Plänkler.', { t: 'proj', speed: 260, r: 22, kb: 120, tags: ['AUFGELADEN'] }),
+          sk('er9', 'Felsenkoloss', 'earth', 64, 8.4, 'Sofort, breiter AoE-Bereich.', 'STUN 1s', 'Wächter.', { t: 'proj', speed: 380, r: 18, aoe: 80, stun: 1, tags: ['SOFORT'] }),
         ], q: [
           sk('eq1', 'Barrikade', 'earth', 0, 11, 'Zerstörbare Mauer 200HP.', 'Wand 200HP', 'Deckung.', { t: 'wall', ww: 12, wh: 100, hp: 200, life: 6, tags: ['TERRAIN'] }),
           sk('eq2', 'Treibsand', 'earth', 10, 10, '-70% Speed in Zone 5s.', 'SLOW 70%', 'Setup.', { t: 'zone', r: 88, slow: { f: .7 }, life: 5, dmgTick: 2, tags: ['ZONE'] }),
           sk('eq3', 'Stein-Rüstung', 'earth', 0, 12, 'Schild +100HP für 6s.', 'SCHILD 100HP', 'Tank.', { t: 'buff', shield: 100, tags: ['SCHILD'] }),
+          sk('eq4', 'Granitmantel', 'earth', 0, 11.5, 'AoE-Slow im Bereich, Erdschicht.', 'SLOW 2s', 'Wächter.', { t: 'aoe', r: 150, slow: { f: .6, dur: 2 }, tags: ['CC'] }),
+          sk('eq5', 'Kieselfalle', 'earth', 5, 11.2, 'AoE-Slow, größerer Bereich.', 'SLOW 2s', 'Zerstörer.', { t: 'aoe', r: 150, slow: { f: .5, dur: 2 }, tags: ['CC'] }),
+          sk('eq6', 'Sandlauf', 'earth', 18, 10.5, 'Dash durch Steine, hinterlässt Spur.', 'DASH+SLOW', 'Bewahrer.', { t: 'dashSkill', range: 250, slow: { f: .5, dur: 2 }, tags: ['DASH'] }),
+          sk('eq7', 'Basaltsprung', 'earth', 14, 10.8, 'Erd-Dash mit Knockback.', 'DASH+KB', 'Taktiker.', { t: 'dashSkill', range: 250, kb: 100, tags: ['DASH'] }),
+          sk('eq8', 'Quarzpanzer', 'earth', 7, 9.1, 'Steinpanzer absorbiert +50 HP.', 'SCHILD 50HP', 'Plänkler.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
+          sk('eq9', 'Felsenform', 'earth', 2, 9.8, 'Erd-Schild +50 HP.', 'SCHILD 50HP', 'Wächter.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
         ], e: [
           sk('ee1', 'Erdbeben', 'earth', 50, 12, 'Große AoE, zerstört Schilde.', 'AoE+SHIELD-BREAK', 'Kontrolle.', { t: 'aoe', r: 140, kb: 0, shieldBreak: true, tags: ['SCHILD-BREAK'] }),
           sk('ee2', 'Versteinerung', 'earth', 0, 13, 'Unverwundbar 3s, aber bewegungslos.', 'INVUL 3s', 'Überleben.', { t: 'buff', invul: 3, immobile: 3, tags: ['INVUL'] }),
           sk('ee3', 'Katapult', 'earth', 0, 12, 'Schleudert dich extrem weit weg.', 'SUPER-DASH', 'Escape.', { t: 'dashSkill', range: 550, kb: 0, tags: ['SUPER-DASH'] }),
+          sk('ee4', 'Granitfeld', 'earth', 40, 13.2, 'Projektil schwächt Gegner Rüstung.', 'WEAKNESS 4s', 'Wächter.', { t: 'proj', speed: 380, r: 12, weakness: { f: .7, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('ee5', 'Kieselzone', 'earth', 40, 10.7, 'Projektil-Debuff, starkes Schwächen.', 'WEAKNESS 4s', 'Zerstörer.', { t: 'proj', speed: 360, r: 12, weakness: { f: .6, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('ee6', 'Sandgrube', 'earth', 0, 14.1, 'Bleibende Zone, 15/tick 6s, slowed.', 'ZONE 6s', 'Bewahrer.', { t: 'zone', r: 120, life: 6, dmgTick: 15, slow: { f: .5, dur: 1 }, tags: ['ZONE'] }),
+          sk('ee7', 'Basaltkreis', 'earth', 0, 13.1, 'Stein-Zone, schadet+slowed.', 'ZONE 6s', 'Taktiker.', { t: 'zone', r: 120, life: 6, dmgTick: 15, slow: { f: .4, dur: 1 }, tags: ['ZONE'] }),
+          sk('ee8', 'Quarzwächter', 'earth', 0, 13.5, 'Beschwört Stein-Golem.', 'MINION', 'Plänkler.', { t: 'special', summonMinion: true, minionEl: 'earth', tags: ['MINION'] }),
+          sk('ee9', 'Felsenriese', 'earth', 0, 10.5, 'Beschwört Erdgolem-Helfer.', 'MINION', 'Wächter.', { t: 'special', summonMinion: true, minionEl: 'earth', tags: ['MINION'] }),
         ], passive: [
           sk('ep1', 'Standhaft', 'earth', 0, 0, 'Immun gegen Rückstoß.', 'KB-Immun', 'Charge.', { t: 'passive', pid: 'standhaft', kbImmune: true }),
           sk('ep2', 'Festung', 'earth', 0, 0, 'Team nimmt 10% weniger Schaden.', '-10% Dmg', 'Tank.', { t: 'passive', pid: 'fest', dmgReduce: .10 }),
           sk('ep3', 'Splitter', 'earth', 0, 0, 'Angreifer erhalten 12 Thorns zurück.', '12 Thorns', 'Rache.', { t: 'passive', pid: 'splitter', thorns: 12 }),
+          sk('ep4', 'Steinherz', 'earth', 0, 0, 'Gegner-Kill heilt 15 HP.', '+15 HP on Kill', 'Wächter.', { t: 'passive', pid: 'steinherz', killHeal: 15 }),
+          sk('ep5', 'Erdkraft', 'earth', 0, 0, '+20% Elementarschaden.', '+20% Elem Dmg', 'Zerstörer.', { t: 'passive', pid: 'erdkraft', elemDmg: 1.2 }),
+          sk('ep6', 'Felsenseele', 'earth', 0, 0, '+30 Max HP.', '+30 Max HP', 'Bewahrer.', { t: 'passive', pid: 'felsens', bonusHP: 30 }),
+          sk('ep7', 'Granitinstinkt', 'earth', 0, 0, 'Alle Cooldowns -15%.', '-15% CDs', 'Taktiker.', { t: 'passive', pid: 'granitinst', cdReduce: .15 }),
+          sk('ep8', 'Sandwandler', 'earth', 0, 0, '+15% Bewegungsspeed.', '+15% Speed', 'Plänkler.', { t: 'passive', pid: 'sandwand', spdMult: 1.15 }),
+          sk('ep9', 'Quarzwille', 'earth', 0, 0, 'Reflektiert 10 Schaden an Angreifer.', '10 Thorns', 'Wächter.', { t: 'passive', pid: 'quarzwille', thorns: 10 }),
         ]
       },
       wind: {
@@ -903,22 +1187,52 @@
           sk('wil1', 'Windklinge', 'wind', 17, .45, 'Sehr schnell, durchschlägt 1 Gegner.', 'PIERCE', 'Spam.', { t: 'proj', speed: 660, r: 7, pierce: true, tags: ['SCHNELL'] }),
           sk('wil2', 'Luftstoß', 'wind', 0, .50, 'Kein Schaden, nur Rückstoß.', 'KB 220', 'Combo.', { t: 'aoe', r: 92, kb: 220, tags: ['KB'] }),
           sk('wil3', 'Bumerang', 'wind', 20, .70, 'Kommt zurück, trifft 2×.', '2× Treffer', 'Rückkehr.', { t: 'proj', speed: 509, r: 9, boomerang: true, tags: ['RÜCKKEHR'] }),
+          sk('wil4', 'Sturmnadel', 'wind', 20, .55, 'Schnelles Projektil, KB.', 'KB 60', 'Wächter.', { t: 'proj', speed: 600, r: 7, kb: 60, tags: ['SCHNELL'] }),
+          sk('wil5', 'Orkanschnitt', 'wind', 32, .49, 'Kegelstrahl, hoher Schaden.', 'kein Status', 'Zerstörer.', { t: 'beam', range: 150, cA: .38, tags: ['KEGEL'] }),
+          sk('wil6', 'Brisenpfeil', 'wind', 26, .63, 'Projektil, Pierce-Effekt.', 'PIERCE', 'Bewahrer.', { t: 'proj', speed: 580, r: 8, pierce: true, tags: ['PIERCE'] }),
+          sk('wil7', 'Böenstreich', 'wind', 20, .68, 'Kegelstrahl, Knockback.', 'KB 80', 'Taktiker.', { t: 'beam', range: 150, cA: .42, kb: 80, tags: ['KEGEL'] }),
+          sk('wil8', 'Wirbelschuss', 'wind', 21, .40, 'Extrem schnell, niedriger CD.', 'kein Status', 'Plänkler.', { t: 'proj', speed: 700, r: 6, tags: ['SCHNELL'] }),
+          sk('wil9', 'Zyklon-Hieb', 'wind', 18, .72, 'Kegelstrahl, breiter AoE.', 'KB 50', 'Wächter.', { t: 'beam', range: 150, cA: .48, kb: 50, tags: ['KEGEL'] }),
         ], rmb: [
           sk('wir1', 'Tornado-Schuss', 'wind', 64, 9, 'Wirbelt Gegner hoch (Airborne 2s).', 'AIRBORNE 2s', 'Setup.', { t: 'proj', speed: 459, r: 18, stun: 2, tags: ['AIRBORNE'] }),
           sk('wir2', 'Vakuum-Bombe', 'wind', 38, 10, 'Zieht alle Gegner an einen Punkt.', 'PULL', 'Feuer-Combo.', { t: 'aoe', r: 140, pull: 200, tags: ['PULL'] }),
           sk('wir3', 'Schallmauer', 'wind', 48, 8, 'Dashst durch Gegner hindurch.', 'KB 150', 'Escape.', { t: 'dashSkill', range: 335, kb: 150, tags: ['DASH'] }),
+          sk('wir4', 'Sturmkugel', 'wind', 60, 5.1, 'Sofort, AoE 80, Knockback.', 'KB 120', 'Wächter.', { t: 'proj', speed: 400, r: 16, aoe: 80, kb: 120, tags: ['SOFORT'] }),
+          sk('wir5', 'Orkanstoß', 'wind', 102, 4.7, 'Sofort, massiver Schaden.', 'KB 150', 'Zerstörer.', { t: 'proj', speed: 380, r: 18, aoe: 80, kb: 150, tags: ['SOFORT'] }),
+          sk('wir6', 'Brisenbogen', 'wind', 91, 7.2, 'Aufladbar, hohe Reichweite.', 'KB 100', 'Bewahrer.', { t: 'proj', speed: 300, r: 20, kb: 100, tags: ['AUFGELADEN'] }),
+          sk('wir7', 'Böenbombe', 'wind', 89, 4.2, 'Aufladbar, schneller CD.', 'KB 80', 'Taktiker.', { t: 'proj', speed: 320, r: 16, kb: 80, tags: ['AUFGELADEN'] }),
+          sk('wir8', 'Wirbelsturm', 'wind', 65, 4.4, 'Aufladbar, hoher DPS.', 'KB 100', 'Plänkler.', { t: 'proj', speed: 280, r: 18, kb: 100, tags: ['AUFGELADEN'] }),
+          sk('wir9', 'Zyklonkoloss', 'wind', 108, 7.6, 'Sofort, breiter Bereich.', 'KB 130', 'Wächter.', { t: 'proj', speed: 380, r: 18, aoe: 80, kb: 130, tags: ['SOFORT'] }),
         ], q: [
           sk('wq1', 'Rückenwind', 'wind', 0, 12, '+50% Speed für 4s.', 'SPEED +50%', 'Kite.', { t: 'buff', speedBuff: 4, tags: ['SPEED'] }),
           sk('wq2', 'Windmauer', 'wind', 0, 12, 'Mauer blockt alle Projektile 5s.', 'PROJ-BLOCK', 'Konter.', { t: 'wall', ww: 12, wh: 100, windWall: true, life: 5, tags: ['BLOCK'] }),
           sk('wq3', 'Sauerstoff-Entzug', 'wind', 0, 12, 'Telegraph 0.6s Stun 1.5s AoE.', 'STUN 1.5s', 'CC.', { t: 'daoe', delay: .6, r: 110, stun: 1.5, dmg: 0, tags: ['TELEGRAPHED'] }),
+          sk('wiq4', 'Sturmmantel', 'wind', 3, 10.1, 'AoE-Slow im Bereich.', 'SLOW 2s', 'Wächter.', { t: 'aoe', r: 150, slow: { f: .5, dur: 2 }, tags: ['CC'] }),
+          sk('wiq5', 'Orkanstoß', 'wind', 5, 10.4, 'AoE-Slow, Wind-Explosion.', 'SLOW 2s', 'Zerstörer.', { t: 'aoe', r: 150, slow: { f: .5, dur: 2 }, tags: ['CC'] }),
+          sk('wiq6', 'Brisenlauf', 'wind', 18, 9.7, 'Schneller Dash, hinterlässt Trail.', 'DASH', 'Bewahrer.', { t: 'dashSkill', range: 250, tags: ['DASH'] }),
+          sk('wiq7', 'Böensprung', 'wind', 16, 10.5, 'Dash mit Slow-Nacheffekt.', 'DASH+SLOW', 'Taktiker.', { t: 'dashSkill', range: 250, slow: { f: .4, dur: 2 }, tags: ['DASH'] }),
+          sk('wiq8', 'Wirbelschild', 'wind', 7, 11.2, 'Windschild absorbiert +50 HP.', 'SCHILD 50HP', 'Plänkler.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
+          sk('wiq9', 'Zyklon-Rüstung', 'wind', 3, 8.3, 'Windschild +50 HP.', 'SCHILD 50HP', 'Wächter.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
         ], e: [
           sk('we1', 'Luft-Tausch', 'wind', 20, 14, 'Tauscht Position mit nächstem Gegner.', 'POSITION-TAUSCH', 'Chaos.', { t: 'special', swap: true, tags: ['SWAP'] }),
           sk('we2', 'Sturm-Schub', 'wind', 40, 10, 'Stößt Gegner vor dir extrem weg.', 'KB 280', 'Pusher.', { t: 'proj', speed: 320, r: 22, kb: 280, tags: ['PUSH'] }),
           sk('we3', 'Luft-Klon', 'wind', 0, 12, 'Unsichtbarer Schein-Dash lenkt Gegner ab.', 'FEINT', 'Täuschung.', { t: 'buff', feint: true, tags: ['FEINT'] }),
+          sk('wie4', 'Sturmfeld', 'wind', 40, 12.5, 'Projektil schwächt Gegner.', 'WEAKNESS 4s', 'Wächter.', { t: 'proj', speed: 380, r: 12, weakness: { f: .7, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('wie5', 'Orkanzone', 'wind', 40, 13.0, 'Projektil-Debuff, stärker.', 'WEAKNESS 4s', 'Zerstörer.', { t: 'proj', speed: 360, r: 12, weakness: { f: .6, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('wie6', 'Brisenkreis', 'wind', 0, 12.7, 'Bleibende Zone, 15/tick 6s.', 'ZONE 6s', 'Bewahrer.', { t: 'zone', r: 120, life: 6, dmgTick: 15, tags: ['ZONE'] }),
+          sk('wie7', 'Böengrube', 'wind', 0, 10.4, 'Wind-Zone, KB.', 'ZONE 6s', 'Taktiker.', { t: 'zone', r: 120, life: 6, dmgTick: 15, kb: 60, tags: ['ZONE'] }),
+          sk('wie8', 'Wirbelpfad', 'wind', 0, 14.3, 'Beschwört Wind-Minion.', 'MINION', 'Plänkler.', { t: 'special', summonMinion: true, minionEl: 'wind', tags: ['MINION'] }),
+          sk('wie9', 'Zyklonwesen', 'wind', 0, 11.2, 'Beschwört Sturm-Helfer.', 'MINION', 'Wächter.', { t: 'special', summonMinion: true, minionEl: 'wind', tags: ['MINION'] }),
         ], passive: [
           sk('wip1', 'Leichtfüßig', 'wind', 0, 0, 'Dash-CD -35%.', 'Dash -35%', 'Mobilität.', { t: 'passive', pid: 'leicht', dashMult: .65 }),
           sk('wip2', 'Statik', 'wind', 0, 0, 'Bewegen lädt nächsten Angriff (+40%).', '+40% nach Bewegung', 'Stark.', { t: 'passive', pid: 'statik' }),
           sk('wip3', 'Böe', 'wind', 0, 0, '20% Chance: Projektile automatisch ausweichen.', '20% Auto-Dodge', 'Phase 3.', { t: 'passive', pid: 'boe', dodge: .2 }),
+          sk('wip4', 'Sturmherz', 'wind', 0, 0, 'Gegner-Kill heilt 15 HP.', '+15 HP on Kill', 'Wächter.', { t: 'passive', pid: 'sturmherz', killHeal: 15 }),
+          sk('wip5', 'Orkankraft', 'wind', 0, 0, '+20% Elementarschaden.', '+20% Elem Dmg', 'Zerstörer.', { t: 'passive', pid: 'orkankr', elemDmg: 1.2 }),
+          sk('wip6', 'Brisenseele', 'wind', 0, 0, '+30 Max HP.', '+30 Max HP', 'Bewahrer.', { t: 'passive', pid: 'brisens', bonusHP: 30 }),
+          sk('wip7', 'Windinstinkt', 'wind', 0, 0, 'Alle Cooldowns -15%.', '-15% CDs', 'Taktiker.', { t: 'passive', pid: 'windindst', cdReduce: .15 }),
+          sk('wip8', 'Luftläufer', 'wind', 0, 0, '+15% Bewegungsspeed.', '+15% Speed', 'Plänkler.', { t: 'passive', pid: 'luftlauf', spdMult: 1.15 }),
+          sk('wip9', 'Zyklonwille', 'wind', 0, 0, 'Reflektiert 10 Schaden.', '10 Thorns', 'Wächter.', { t: 'passive', pid: 'zyklonwille', thorns: 10 }),
         ]
       },
       nature: {
@@ -949,22 +1263,52 @@
           sk('lil1', 'Laser', 'light', 24, .50, 'Sofort-Treffer (Hitscan), kein Flug-Speed.', 'SOFORT', 'Präzise.', { t: 'hitscan', range: 360, tags: ['HITSCAN'] }),
           sk('lil2', 'Licht-Orb', 'light', 19, .65, 'Langsam, pulsiert AoE-Schaden im Flug.', 'AoE 30px', 'Abdeckung.', { t: 'proj', speed: 340, r: 13, pulseAoe: 30, tags: ['PULS'] }),
           sk('lil3', 'Smite', 'light', 32, .70, 'Blitzschlag-Verzögerung, Blind 1.2s.', 'BLIND 1.2s', 'Gruppe.', { t: 'daoe', delay: .5, r: 44, blind: 1.2, dmg: 32, tags: ['BLITZ'] }),
+          sk('lil4', 'Lichtpfeil', 'light', 22, .52, 'Schneller Lichtstrahl.', 'BLIND 0.5s', 'Wächter.', { t: 'proj', speed: 550, r: 8, blind: .5, tags: ['SCHNELL'] }),
+          sk('lil5', 'Strahlenkegel', 'light', 31, .58, 'Kegelstrahl, blendet.', 'BLIND 0.8s', 'Zerstörer.', { t: 'beam', range: 150, cA: .40, blind: .8, tags: ['KEGEL'] }),
+          sk('lil6', 'Prismenschuss', 'light', 23, .63, 'Projektil, heilt leicht.', '+5 HEAL', 'Bewahrer.', { t: 'proj', speed: 480, r: 9, healHit: 5, tags: ['HEILUNG'] }),
+          sk('lil7', 'Glorienstrahl', 'light', 25, .65, 'Kegelstrahl, Licht-Effekt.', 'BLIND 0.6s', 'Taktiker.', { t: 'beam', range: 150, cA: .42, blind: .6, tags: ['KEGEL'] }),
+          sk('lil8', 'Sonnennadel', 'light', 28, .42, 'Extrem schneller Lichtpfeil.', 'kein Status', 'Plänkler.', { t: 'proj', speed: 600, r: 7, tags: ['SCHNELL'] }),
+          sk('lil9', 'Heiligenschein', 'light', 17, .71, 'Kegelstrahl, breiter Bereich.', 'BLIND 0.4s', 'Wächter.', { t: 'beam', range: 150, cA: .48, blind: .4, tags: ['KEGEL'] }),
         ], rmb: [
           sk('lir1', 'Blend-Granate', 'light', 21, 9, 'Projektil-AoE, Blind 3s.', 'BLIND 3s', 'Konter.', { t: 'proj', speed: 352, r: 14, aoe: 108, blind: 3, tags: ['BLIND'] }),
           sk('lir2', 'Lichtschwert', 'light', 78, 10, 'Großer Nahkampf-Schwung, KB.', 'KB 120', 'Dmg.', { t: 'aoe', r: 115, kb: 120, tags: ['NAHKAMPF'] }),
           sk('lir3', 'Prisma-Strahl', 'light', 35, 9, 'Teilt sich in 3 Strahlen auf.', '3× Strahlen', 'Multi.', { t: 'multi', cnt: 3, speed: 511, r: 9, tags: ['SPLIT'] }),
+          sk('lir4', 'Lichtkugel', 'light', 83, 5.3, 'Sofort, AoE 80, Blind.', 'BLIND 1.5s', 'Wächter.', { t: 'proj', speed: 360, r: 16, aoe: 80, blind: 1.5, tags: ['SOFORT'] }),
+          sk('lir5', 'Strahlenstoß', 'light', 105, 5.5, 'Sofort, massiver Lichtschaden.', 'BLIND 2s', 'Zerstörer.', { t: 'proj', speed: 380, r: 18, aoe: 80, blind: 2, tags: ['SOFORT'] }),
+          sk('lir6', 'Prismenbogen', 'light', 82, 7.5, 'Aufladbar, Heileffekt.', '+20 HEAL', 'Bewahrer.', { t: 'proj', speed: 280, r: 20, healHit: 20, tags: ['AUFGELADEN'] }),
+          sk('lir7', 'Glorienblitz', 'light', 103, 4.6, 'Aufladbar, schneller CD.', 'BLIND 1s', 'Taktiker.', { t: 'proj', speed: 300, r: 16, blind: 1, tags: ['AUFGELADEN'] }),
+          sk('lir8', 'Sonnenkanone', 'light', 63, 4.3, 'Aufladbar, hoher DPS.', 'BLIND 1.5s', 'Plänkler.', { t: 'proj', speed: 260, r: 22, blind: 1.5, tags: ['AUFGELADEN'] }),
+          sk('lir9', 'Heiligenkoloss', 'light', 91, 8.0, 'Sofort, breiter AoE.', 'BLIND 1s', 'Wächter.', { t: 'proj', speed: 380, r: 18, aoe: 80, blind: 1, tags: ['SOFORT'] }),
         ], q: [
           sk('lq1', 'Schutz-Engel', 'light', 0, 12, 'Schild 150HP für Verbündeten/dich.', 'SCHILD 150HP', 'Tank.', { t: 'buff', shield: 150, tags: ['SCHILD'] }),
           sk('lq2', 'Flash', 'light', 0, 11, 'Sofort-Teleport zur Mausposition.', 'BLINK', 'Escape.', { t: 'special', blink: true, tags: ['BLINK'] }),
           sk('lq3', 'Reinigung', 'light', 0, 10, 'Entfernt CC-Effekte (Stun, Root).', 'CLEANSE CC', 'Konter.', { t: 'buff', cleanse: true, tags: ['CLEANSE'] }),
+          sk('lq4', 'Lichtmantel', 'light', 0, 9.5, 'AoE-Blind im Bereich.', 'BLIND 2s', 'Wächter.', { t: 'aoe', r: 150, blind: 2, tags: ['CC'] }),
+          sk('lq5', 'Strahlenmantel', 'light', 8, 9.0, 'AoE-Blind, größerer Bereich.', 'BLIND 2s', 'Zerstörer.', { t: 'aoe', r: 150, blind: 2, tags: ['CC'] }),
+          sk('lq6', 'Prismenlauf', 'light', 12, 10.5, 'Licht-Dash, hellt Zone auf.', 'DASH+BLIND', 'Bewahrer.', { t: 'dashSkill', range: 250, blind: 1, tags: ['DASH'] }),
+          sk('lq7', 'Gloriensprung', 'light', 10, 9.3, 'Dash mit Heal-Nacheffekt.', 'DASH+HEAL', 'Taktiker.', { t: 'dashSkill', range: 250, healHit: 10, tags: ['DASH'] }),
+          sk('lq8', 'Sonnenschild', 'light', 3, 10.8, 'Licht-Schild +50 HP.', 'SCHILD 50HP', 'Plänkler.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
+          sk('lq9', 'Heiligenpanzer', 'light', 2, 8.5, 'Licht-Schild +50 HP.', 'SCHILD 50HP', 'Wächter.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
         ], e: [
           sk('le1', 'Gesegneter Boden', 'light', 0, 12, 'Zone +50% Angriffskraft 6s.', 'DMGBUFF-ZONE', 'Offense.', { t: 'zone', r: 80, dmgBuffZone: { f: 1.5, dur: 6 }, life: 6, tags: ['BUFF-ZONE'] }),
           sk('le2', 'Ketten-Blitz', 'light', 40, 10, 'Springt von Feind zu Feind, heilt dich.', 'CHAIN +20HP', 'Multi.', { t: 'special', chainLightning: true, chainDmg: 40, chainHeal: 20, tags: ['CHAIN'] }),
           sk('le3', 'Wiederbelebung', 'light', 0, 30, 'Wiederbelebt toten Spieler sofort.', 'REVIVE', 'Einmalig.', { t: 'special', revive: true, tags: ['REVIVE'] }),
+          sk('le4', 'Lichtfeld', 'light', 40, 14.5, 'Projektil schwächt Gegner.', 'WEAKNESS 4s', 'Wächter.', { t: 'proj', speed: 380, r: 12, weakness: { f: .7, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('le5', 'Strahlenzone', 'light', 40, 11.5, 'Projektil-Debuff, stärker.', 'WEAKNESS 4s', 'Zerstörer.', { t: 'proj', speed: 360, r: 12, weakness: { f: .6, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('le6', 'Prismenkreis', 'light', 0, 13.7, 'Bleibende Licht-Zone 6s, 15/tick.', 'ZONE 6s', 'Bewahrer.', { t: 'zone', r: 120, life: 6, dmgTick: 15, tags: ['ZONE'] }),
+          sk('le7', 'Gloriengrube', 'light', 0, 10.6, 'Licht-Zone, schadet+blendet.', 'ZONE 6s', 'Taktiker.', { t: 'zone', r: 120, life: 6, dmgTick: 15, blind: .5, tags: ['ZONE'] }),
+          sk('le8', 'Sonnenfreund', 'light', 0, 12.5, 'Beschwört Licht-Minion.', 'MINION', 'Plänkler.', { t: 'special', summonMinion: true, minionEl: 'light', tags: ['MINION'] }),
+          sk('le9', 'Heiligengeist', 'light', 0, 11.1, 'Beschwört Licht-Helfer.', 'MINION', 'Wächter.', { t: 'special', summonMinion: true, minionEl: 'light', tags: ['MINION'] }),
         ], passive: [
           sk('lip1', 'Hoffnung', 'light', 0, 0, 'Erhaltene Heilung/Schilde +30%.', '+30% Heal/Schild', 'Stack.', { t: 'passive', pid: 'hoff', healBonus: 1.3 }),
           sk('lip2', 'Solar-Energie', 'light', 0, 0, 'R-Ulti lädt passiv auf (CD -30%).', '-30% R-CD', 'Ulti.', { t: 'passive', pid: 'solar', fusionCDR: .3 }),
           sk('lip3', 'Blendende Rüstung', 'light', 0, 0, 'Angreifer werden kurz geblendet.', 'Angreifer BLIND', 'Def.', { t: 'passive', pid: 'blend2' }),
+          sk('lip4', 'Lichtherz', 'light', 0, 0, 'Gegner-Kill heilt 15 HP.', '+15 HP on Kill', 'Wächter.', { t: 'passive', pid: 'lichtherz', killHeal: 15 }),
+          sk('lip5', 'Strahlenmacht', 'light', 0, 0, '+20% Elementarschaden.', '+20% Elem Dmg', 'Zerstörer.', { t: 'passive', pid: 'strahlenmacht', elemDmg: 1.2 }),
+          sk('lip6', 'Prismenseele', 'light', 0, 0, '+30 Max HP.', '+30 Max HP', 'Bewahrer.', { t: 'passive', pid: 'prismens', bonusHP: 30 }),
+          sk('lip7', 'Glorieninstinkt', 'light', 0, 0, 'Alle Cooldowns -15%.', '-15% CDs', 'Taktiker.', { t: 'passive', pid: 'glorieninst', cdReduce: .15 }),
+          sk('lip8', 'Sonnenläufer', 'light', 0, 0, '+15% Bewegungsspeed.', '+15% Speed', 'Plänkler.', { t: 'passive', pid: 'sonnenlauf', spdMult: 1.15 }),
+          sk('lip9', 'Heiligenwille', 'light', 0, 0, 'Reflektiert 10 Licht-Schaden.', '10 Thorns', 'Wächter.', { t: 'passive', pid: 'heiligenwille', thorns: 10 }),
         ]
       },
       darkness: {
@@ -972,22 +1316,52 @@
           sk('dl1', 'Schatten-Bolzen', 'darkness', 17, .60, 'Stärker je weiter er fliegt. +8 Lifesteal.', 'DISTANZ-SKALA+LIFESTEAL', 'Lange Distanz.', { t: 'proj', speed: 456, r: 9, rangeMult: 2.5, healHit: 8, tags: ['LIFESTEAL'] }),
           sk('dl2', 'Sense', 'darkness', 26, .65, 'Breiter Nahkampf-Schwung. +10 Lifesteal.', 'LIFESTEAL +10', 'Sustain.', { t: 'aoe', r: 110, healHit: 10, tags: ['NAHKAMPF'] }),
           sk('dl3', 'Leeren-Kugel', 'darkness', 20, .70, 'Geht durch Wände hindurch. +6 Lifesteal.', 'DURCH-WÄNDE+LIFESTEAL', 'Walls.', { t: 'proj', speed: 483, r: 10, throughWalls: true, healHit: 6, tags: ['DURCH-WÄNDE'] }),
+          sk('dl4', 'Schattensplitter', 'darkness', 23, .53, 'Schnelles Projektil, Lifesteal.', '+6 LIFESTEAL', 'Wächter.', { t: 'proj', speed: 480, r: 8, healHit: 6, tags: ['SCHNELL'] }),
+          sk('dl5', 'Fluchkegel', 'darkness', 29, .60, 'Kegelstrahl, Schatten-DoT.', 'SHADOW 6/s', 'Zerstörer.', { t: 'beam', range: 150, cA: .40, poison: { d: 6, dur: 3 }, tags: ['KEGEL'] }),
+          sk('dl6', 'Leerepfeil', 'darkness', 22, .67, 'Projektil mit Lifesteal.', '+8 LIFESTEAL', 'Bewahrer.', { t: 'proj', speed: 450, r: 9, healHit: 8, tags: ['LIFESTEAL'] }),
+          sk('dl7', 'Seelenstrahl', 'darkness', 20, .68, 'Kegelstrahl, Lifesteal.', '+5 LIFESTEAL', 'Taktiker.', { t: 'beam', range: 150, cA: .42, healHit: 5, tags: ['KEGEL'] }),
+          sk('dl8', 'Nachtnadel', 'darkness', 25, .44, 'Schnelles Projektil, niedriger CD.', '+4 LIFESTEAL', 'Plänkler.', { t: 'proj', speed: 520, r: 7, healHit: 4, tags: ['SCHNELL'] }),
+          sk('dl9', 'Dunkelhieb', 'darkness', 18, .72, 'Kegelstrahl, breiter Bereich.', '+5 LIFESTEAL', 'Wächter.', { t: 'beam', range: 150, cA: .48, healHit: 5, tags: ['KEGEL'] }),
         ], rmb: [
           sk('dr1', 'Seelen-Raub', 'darkness', 16, 10, 'Channelstrahl, Lifesteal 100%.', 'LIFESTEAL 100%', 'Drain.', { t: 'beam', range: 265, healHit: 16, tags: ['DRAIN'] }),
           sk('dr2', 'Furcht-Schrei', 'darkness', 0, 11, 'Telegraph 0.65s, Fear-AoE 2s.', 'FEAR 2s', 'Abstand.', { t: 'daoe', delay: .65, r: 135, fear: 2, dmg: 0, tags: ['TELEGRAPHED', 'FEAR'] }),
           sk('dr3', 'Schatten-Sprung', 'darkness', 44, 9, 'Teleport hinter Gegner, immer kritisch.', 'TELEPORT+KRIT', 'Backstab.', { t: 'special', teleportBehind: true, critBuff: 2, tags: ['TELEPORT'] }),
+          sk('dr4', 'Schattenkugel', 'darkness', 62, 4.3, 'Sofort, AoE 80, Lifesteal.', '+15 LIFESTEAL', 'Wächter.', { t: 'proj', speed: 360, r: 16, aoe: 80, healHit: 15, tags: ['SOFORT'] }),
+          sk('dr5', 'Fluchball', 'darkness', 109, 5.3, 'Sofort, massiver Schaden.', 'FEAR 1s', 'Zerstörer.', { t: 'proj', speed: 380, r: 18, aoe: 80, fear: 1, tags: ['SOFORT'] }),
+          sk('dr6', 'Leerestoß', 'darkness', 88, 7.5, 'Aufladbar, hoher Einzelschaden.', 'FEAR 1.5s', 'Bewahrer.', { t: 'proj', speed: 280, r: 20, fear: 1.5, tags: ['AUFGELADEN'] }),
+          sk('dr7', 'Seelenramme', 'darkness', 99, 4.7, 'Aufladbar, schneller CD.', '+20 LIFESTEAL', 'Taktiker.', { t: 'proj', speed: 300, r: 16, healHit: 20, tags: ['AUFGELADEN'] }),
+          sk('dr8', 'Nachtbombe', 'darkness', 103, 4.2, 'Aufladbar, hoher DPS.', 'FEAR 1s', 'Plänkler.', { t: 'proj', speed: 260, r: 22, fear: 1, tags: ['AUFGELADEN'] }),
+          sk('dr9', 'Dunkelkoloss', 'darkness', 69, 8.0, 'Sofort, breiter AoE.', '+18 LIFESTEAL', 'Wächter.', { t: 'proj', speed: 380, r: 18, aoe: 80, healHit: 18, tags: ['SOFORT'] }),
         ], q: [
           sk('dq1', 'Unsichtbarkeit', 'darkness', 0, 14, '3s Stealth, erster Angriff kritisch.', 'STEALTH 3s→KRIT', 'Opener.', { t: 'buff', stealth: true, critMult: 2.5, tags: ['STEALTH'] }),
           sk('dq2', 'Verderbnis', 'darkness', 10, 11, 'Boden-Zone: Schaden+Lifesteal 5s.', '12/s DMG+8/s HEAL', 'Sustain.', { t: 'zone', r: 88, dmgTick: 12, healTick: 8, life: 5, tags: ['ZONE'] }),
           sk('dq3', 'Fluch der Schwäche', 'darkness', 0, 12, 'Gegner macht 50% weniger Schaden 6s.', 'BOSS -50%', 'Konter.', { t: 'special', curseE: { dur: 6, dr: .5 }, tags: ['FLUCH'] }),
+          sk('dq4', 'Schattenmantel', 'darkness', 0, 8.0, 'AoE-Slow im Bereich.', 'SLOW 2s', 'Wächter.', { t: 'aoe', r: 150, slow: { f: .5, dur: 2 }, tags: ['CC'] }),
+          sk('dq5', 'Fluchschleier', 'darkness', 6, 11.4, 'AoE-Slow, größerer Bereich.', 'SLOW 2s', 'Zerstörer.', { t: 'aoe', r: 150, slow: { f: .6, dur: 2 }, tags: ['CC'] }),
+          sk('dq6', 'Leereschritt', 'darkness', 20, 11.1, 'Shadow-Dash durch Feinde.', 'DASH+FEAR', 'Bewahrer.', { t: 'dashSkill', range: 250, fear: 1, tags: ['DASH'] }),
+          sk('dq7', 'Seelenpanzer', 'darkness', 19, 11.3, 'Dash mit Lifesteal-Trail.', 'DASH+HEAL', 'Taktiker.', { t: 'dashSkill', range: 250, healHit: 12, tags: ['DASH'] }),
+          sk('dq8', 'Nachtlauf', 'darkness', 13, 11.4, 'Schatten-Schild +50 HP.', 'SCHILD 50HP', 'Plänkler.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
+          sk('dq9', 'Dunkelform', 'darkness', 3, 9.5, 'Dunkel-Schild +50 HP.', 'SCHILD 50HP', 'Wächter.', { t: 'buff', shield: 50, tags: ['SCHILD'] }),
         ], e: [
           sk('de1', 'Opferung', 'darkness', 120, 14, 'Kostet 30 eigene HP, massiver Schaden.', 'TRUE DMG -30HP', 'All-In.', { t: 'special', sacrifice: { selfCost: 30, dmg: 120 }, tags: ['OPFER'] }),
           sk('de2', 'Stille', 'darkness', 0, 12, 'Projektil: Gegner kann 4s keine Skills nutzen.', 'SILENCE 4s', 'Konter.', { t: 'proj', speed: 340, r: 12, silence: 4, tags: ['SILENCE'] }),
           sk('de3', 'Schwarzes Loch', 'darkness', 0, 14, 'Zone 4s: saugt Projektile ein, zieht Gegner ran.', 'PROJ-DELETE+PULL', 'Kontrolle.', { t: 'zone', r: 80, life: 4, blackHole: true, pull: 60, tags: ['SCHWARZES LOCH'] }),
+          sk('de4', 'Schattenfeld', 'darkness', 40, 14.5, 'Projektil schwächt Gegner.', 'WEAKNESS 4s', 'Wächter.', { t: 'proj', speed: 380, r: 12, weakness: { f: .7, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('de5', 'Fluchzone', 'darkness', 40, 11.5, 'Projektil-Debuff, stärker.', 'WEAKNESS 4s', 'Zerstörer.', { t: 'proj', speed: 360, r: 12, weakness: { f: .6, dur: 4 }, tags: ['DEBUFF'] }),
+          sk('de6', 'Leerekreis', 'darkness', 0, 13.7, 'Bleibende Schatten-Zone 6s, 15/tick.', 'ZONE 6s', 'Bewahrer.', { t: 'zone', r: 120, life: 6, dmgTick: 15, tags: ['ZONE'] }),
+          sk('de7', 'Seelengrube', 'darkness', 0, 10.6, 'Schatten-Zone, Lifesteal.', 'ZONE 6s', 'Taktiker.', { t: 'zone', r: 120, life: 6, dmgTick: 15, healTick: 5, tags: ['ZONE'] }),
+          sk('de8', 'Nachtfeld', 'darkness', 0, 12.5, 'Beschwört Schatten-Minion.', 'MINION', 'Plänkler.', { t: 'special', summonMinion: true, minionEl: 'darkness', tags: ['MINION'] }),
+          sk('de9', 'Dunkelzone', 'darkness', 0, 11.1, 'Beschwört Dunkel-Helfer.', 'MINION', 'Wächter.', { t: 'special', summonMinion: true, minionEl: 'darkness', tags: ['MINION'] }),
         ], passive: [
           sk('dp1', 'Vampir', 'darkness', 0, 0, '5% Lifesteal auf alles.', '5% Lifesteal', 'Sustain.', { t: 'passive', pid: 'vamp', lifesteal: .05 }),
           sk('dp2', 'Exekution', 'darkness', 0, 0, 'Gegner unter 15% HP: +80% Schaden.', '<15%→+80%', 'Finisher.', { t: 'passive', pid: 'exek' }),
           sk('dp3', 'Nachtwandler', 'darkness', 0, 0, 'Während Stealth: +30% Speed.', 'Stealth +30%', 'Opener.', { t: 'passive', pid: 'nacht' }),
+          sk('dp4', 'Schattenherz', 'darkness', 0, 0, 'Gegner-Kill heilt 15 HP.', '+15 HP on Kill', 'Wächter.', { t: 'passive', pid: 'schattenherz', killHeal: 15 }),
+          sk('dp5', 'Leerepuls', 'darkness', 0, 0, '+20% Elementarschaden.', '+20% Elem Dmg', 'Zerstörer.', { t: 'passive', pid: 'leerepuls', elemDmg: 1.2 }),
+          sk('dp6', 'Dunkelseele', 'darkness', 0, 0, '+30 Max HP.', '+30 Max HP', 'Bewahrer.', { t: 'passive', pid: 'dunkelseele', bonusHP: 30 }),
+          sk('dp7', 'Fluchzeichen', 'darkness', 0, 0, 'Alle Cooldowns -15%.', '-15% CDs', 'Taktiker.', { t: 'passive', pid: 'fluchzeichen', cdReduce: .15 }),
+          sk('dp8', 'Nachtinstinkt', 'darkness', 0, 0, '+15% Bewegungsspeed.', '+15% Speed', 'Plänkler.', { t: 'passive', pid: 'nachtinst', spdMult: 1.15 }),
+          sk('dp9', 'Abgrundwille', 'darkness', 0, 0, 'Reflektiert 10 Schatten-Schaden.', '10 Thorns', 'Wächter.', { t: 'passive', pid: 'abgrundwille', thorns: 10 }),
         ]
       },
     };
@@ -998,106 +1372,232 @@
         { variant: 1, n: 'Dampfwalze', e: '💨', el: 'fire', d: 'AoE 160px, 100 Dmg, Blind 3s + Burn.', fx: 'steamRoll', cd: 21 },
         { variant: 2, n: 'Kochender Regen', e: '🌧', el: 'water', d: 'Großer AoE, schmilzt Rüstung, Stun 2s.', fx: 'boilingRain', cd: 21 },
         { variant: 3, n: 'Explosive Blasen', e: '💢', el: 'fire', d: 'Schwebende Minen 8s, platzen bei Berührung.', fx: 'explodingBubbles', cd: 20 },
+        { variant: 4, n: 'Dampfexplosion', e: '💨', el: 'fire', d: '236 Dmg, AoE 300, Transformation.', fx: 'steamExplosion', cd: 34 },
+        { variant: 5, n: 'Kochende Welle', e: '🌧', el: 'water', d: '268 Dmg, AoE 300, Beschwörung.', fx: 'boilingWave', cd: 25 },
+        { variant: 6, n: 'Dampfhammer', e: '💨', el: 'fire', d: '189 Dmg, AoE 300, Globaler Sturm.', fx: 'steamHammer', cd: 29 },
+        { variant: 7, n: 'Siedende Flut', e: '🌊', el: 'water', d: '275 Dmg, AoE 300, Transformation.', fx: 'boilingFlood', cd: 37 },
+        { variant: 8, n: 'Heißwassergeysir', e: '💧', el: 'water', d: '199 Dmg, AoE 300, Beschwörung.', fx: 'hotGeyser', cd: 22 },
+        { variant: 9, n: 'Nebelbrand', e: '🔥', el: 'fire', d: '246 Dmg, AoE 300, Globaler Sturm.', fx: 'fogFire', cd: 31 },
       ],
       'fire+earth': [
         { variant: 1, n: 'Meteor-Hagel', e: '🌋', el: 'fire', d: 'Mehrere Meteore zerstören Deckung, Burn.', fx: 'meteorShower', cd: 18 },
         { variant: 2, n: 'Vulkan-Ausbruch', e: '🔥', el: 'fire', d: 'Vulkanzone 8s spuckt Feuer.', fx: 'volcano', cd: 18 },
         { variant: 3, n: 'Lava-Fluss', e: '🌊', el: 'fire', d: 'Boden = Todeszone 8s, 30 Dmg/s + Burn.', fx: 'lavaFlow', cd: 21 },
+        { variant: 4, n: 'Magmabeben', e: '🌋', el: 'fire', d: '155 Dmg, AoE 300, Transformation.', fx: 'magmaQuake', cd: 26 },
+        { variant: 5, n: 'Feuerstein-Regen', e: '🪨', el: 'earth', d: '197 Dmg, AoE 300, Beschwörung.', fx: 'fireStoneRain', cd: 34 },
+        { variant: 6, n: 'Lavafall', e: '🔥', el: 'fire', d: '199 Dmg, AoE 300, Globaler Sturm.', fx: 'lavaFall', cd: 28 },
+        { variant: 7, n: 'Erdkern-Eruption', e: '🌋', el: 'earth', d: '282 Dmg, AoE 300, Transformation.', fx: 'coreEruption', cd: 39 },
+        { variant: 8, n: 'Obsidian-Splitter', e: '🪨', el: 'earth', d: '264 Dmg, AoE 300, Beschwörung.', fx: 'obsidianShard', cd: 24 },
+        { variant: 9, n: 'Vulkanischer Sturm', e: '🔥', el: 'fire', d: '164 Dmg, AoE 300, Globaler Sturm.', fx: 'volcanicStorm', cd: 30 },
       ],
       'fire+wind': [
         { variant: 1, n: 'Flammen-Tornado', e: '🌀', el: 'fire', d: 'Wandernder Tornado 5s, zieht+verbrennt.', fx: 'fireTornado', cd: 18 },
         { variant: 2, n: 'Hitzeschock', e: '💥', el: 'fire', d: 'Globaler Feuerschaden an allem.', fx: 'heatShock', cd: 22 },
         { variant: 3, n: 'Jetpack-Overload', e: '🚀', el: 'wind', d: 'Mehrfach-Bomben-Teppich 8s.', fx: 'jetBombs', cd: 20 },
+        { variant: 4, n: 'Feuertornado', e: '🌀', el: 'fire', d: '183 Dmg, AoE 300, Transformation.', fx: 'fireTornado2', cd: 38 },
+        { variant: 5, n: 'Glutböe', e: '💥', el: 'fire', d: '265 Dmg, AoE 300, Beschwörung.', fx: 'emberGust', cd: 23 },
+        { variant: 6, n: 'Hitzeschockwelle', e: '🔥', el: 'fire', d: '242 Dmg, AoE 300, Globaler Sturm.', fx: 'heatShockwave', cd: 27 },
+        { variant: 7, n: 'Infernowirbel', e: '🌪', el: 'fire', d: '181 Dmg, AoE 300, Transformation.', fx: 'infernoWhirl', cd: 36 },
+        { variant: 8, n: 'Flammenstrudel', e: '🔥', el: 'wind', d: '248 Dmg, AoE 300, Beschwörung.', fx: 'flameVortex', cd: 36 },
+        { variant: 9, n: 'Aschenwind', e: '🌬', el: 'fire', d: '189 Dmg, AoE 300, Globaler Sturm.', fx: 'ashWind', cd: 29 },
       ],
       'fire+nature': [
         { variant: 1, n: 'Brennende Ranken', e: '🌿', el: 'fire', d: 'Fesselt Gegner 3s + Burn 20/s.', fx: 'fireVines', cd: 19 },
         { variant: 2, n: 'Phosphor-Sporen', e: '☁', el: 'nature', d: 'Explosive Pflanzen wachsen überall auf.', fx: 'phosphorSpores', cd: 21 },
         { variant: 3, n: 'Sonnenstrahl', e: '☀', el: 'fire', d: 'Gebündelter Orbit-Laser, 150 Dmg.', fx: 'sunBeam', cd: 19 },
+        { variant: 4, n: 'Feuerreben', e: '🌿', el: 'fire', d: '252 Dmg, AoE 300, Transformation.', fx: 'fireVines2', cd: 36 },
+        { variant: 5, n: 'Glutsporen', e: '☁', el: 'nature', d: '195 Dmg, AoE 300, Beschwörung.', fx: 'emberSpores', cd: 35 },
+        { variant: 6, n: 'Brennende Saat', e: '🔥', el: 'fire', d: '268 Dmg, AoE 300, Globaler Sturm.', fx: 'burningSeed', cd: 27 },
+        { variant: 7, n: 'Pflanzenbrand', e: '🌿', el: 'nature', d: '293 Dmg, AoE 300, Transformation.', fx: 'plantFire', cd: 23 },
+        { variant: 8, n: 'Sonnenranke', e: '☀', el: 'nature', d: '200 Dmg, AoE 300, Beschwörung.', fx: 'sunVine', cd: 38 },
+        { variant: 9, n: 'Phosphorwald', e: '🌳', el: 'fire', d: '260 Dmg, AoE 300, Globaler Sturm.', fx: 'phosphorForest', cd: 21 },
       ],
       'fire+light': [
         { variant: 1, n: 'Supernova', e: '⚡', el: 'light', d: 'AoE 200px 130 Dmg + Blind 3s.', fx: 'supernova', cd: 22 },
         { variant: 2, n: 'Laser-Gitter', e: '🔆', el: 'light', d: 'Rotierende Laser schneiden durch Arena.', fx: 'laserGrid', cd: 18 },
         { variant: 3, n: 'Läuterung', e: '✨', el: 'light', d: 'Team heilen + Gegner Vollschaden.', fx: 'purification', cd: 18 },
+        { variant: 4, n: 'Solarbrand', e: '☀', el: 'fire', d: '187 Dmg, AoE 300, Transformation.', fx: 'solarBurn', cd: 26 },
+        { variant: 5, n: 'Lichthagel', e: '🔆', el: 'light', d: '207 Dmg, AoE 300, Beschwörung.', fx: 'lightHail', cd: 31 },
+        { variant: 6, n: 'Strahlender Inferno', e: '🔥', el: 'fire', d: '239 Dmg, AoE 300, Globaler Sturm.', fx: 'radiantInferno', cd: 24 },
+        { variant: 7, n: 'Heilige Flamme', e: '✨', el: 'light', d: '211 Dmg, AoE 300, Transformation.', fx: 'holyFlame', cd: 34 },
+        { variant: 8, n: 'Sonnenkern', e: '☀', el: 'fire', d: '242 Dmg, AoE 300, Beschwörung.', fx: 'sunCore', cd: 21 },
+        { variant: 9, n: 'Göttliche Eruption', e: '🌋', el: 'fire', d: '177 Dmg, AoE 300, Globaler Sturm.', fx: 'divineEruption', cd: 25 },
       ],
       'fire+darkness': [
         { variant: 1, n: 'Schwarze Flamme', e: '🖤', el: 'fire', d: 'True Damage 200 an allem in 180px.', fx: 'blackFlame', cd: 19 },
         { variant: 2, n: 'Dämonen-Pakt', e: '😈', el: 'darkness', d: '8s Melee-Form: Life-Drain+Schaden.', fx: 'demonPact', cd: 21 },
         { variant: 3, n: 'Schatten-Explosion', e: '💣', el: 'darkness', d: 'Detoniert Schatten aller Gegner, AoE.', fx: 'shadowExplode', cd: 21 },
+        { variant: 4, n: 'Höllenfeuer', e: '🖤', el: 'fire', d: '183 Dmg, AoE 300, Transformation.', fx: 'hellfire2', cd: 29 },
+        { variant: 5, n: 'Schattendetonation', e: '💣', el: 'darkness', d: '243 Dmg, AoE 300, Beschwörung.', fx: 'shadowDet', cd: 31 },
+        { variant: 6, n: 'Dunkle Eruption', e: '🌑', el: 'darkness', d: '162 Dmg, AoE 300, Globaler Sturm.', fx: 'darkEruption', cd: 27 },
+        { variant: 7, n: 'Geisterflamme', e: '👻', el: 'fire', d: '274 Dmg, AoE 300, Transformation.', fx: 'ghostFlame', cd: 25 },
+        { variant: 8, n: 'Verderbensfeuer', e: '🔥', el: 'darkness', d: '215 Dmg, AoE 300, Beschwörung.', fx: 'corruptFire', cd: 22 },
+        { variant: 9, n: 'Dämonenpyre', e: '😈', el: 'fire', d: '276 Dmg, AoE 300, Globaler Sturm.', fx: 'demonPyre', cd: 33 },
       ],
       'water+earth': [
         { variant: 1, n: 'Erdrutsch', e: '🌊', el: 'water', d: 'Riesige Matsch-Welle, Stun 3s + Slow.', fx: 'mudslide', cd: 20 },
         { variant: 2, n: 'Sumpf-Monster', e: '🐊', el: 'earth', d: 'Beschwört Golem, verlangsamt+schlägt.', fx: 'swampGolem', cd: 19 },
         { variant: 3, n: 'Treibsand-Grube', e: '🕳', el: 'earth', d: 'Riesige Zone 8s zieht Gegner nach unten.', fx: 'sandPit', cd: 22 },
+        { variant: 4, n: 'Schlammstrom', e: '🌊', el: 'water', d: '184 Dmg, AoE 300, Transformation.', fx: 'mudStream', cd: 29 },
+        { variant: 5, n: 'Sumpfbrocken', e: '🐊', el: 'earth', d: '256 Dmg, AoE 300, Beschwörung.', fx: 'swampChunk', cd: 31 },
+        { variant: 6, n: 'Erdrutschflut', e: '🌊', el: 'water', d: '162 Dmg, AoE 300, Globaler Sturm.', fx: 'mudFlood', cd: 36 },
+        { variant: 7, n: 'Tiefengraben', e: '🕳', el: 'earth', d: '202 Dmg, AoE 300, Transformation.', fx: 'deepTrench', cd: 35 },
+        { variant: 8, n: 'Erdbebenflut', e: '🌊', el: 'water', d: '186 Dmg, AoE 300, Beschwörung.', fx: 'quakeFlood', cd: 36 },
+        { variant: 9, n: 'Schlammlawine', e: '🐊', el: 'earth', d: '223 Dmg, AoE 300, Globaler Sturm.', fx: 'mudSlide2', cd: 38 },
       ],
       'water+wind': [
         { variant: 1, n: 'Blizzard', e: '🌨', el: 'water', d: 'Gefriert alles 2s (Global Freeze).', fx: 'blizzard', cd: 24 },
         { variant: 2, n: 'Monsun', e: '🌧', el: 'water', d: 'Stößt alles weg + heilt Team massiv.', fx: 'monsoon', cd: 19 },
         { variant: 3, n: 'Eis-Splitter-Sturm', e: '🌪', el: 'water', d: 'Maschinengewehr Eis-Projektile 3s.', fx: 'iceStorm', cd: 21 },
+        { variant: 4, n: 'Sturmwelle', e: '🌊', el: 'water', d: '221 Dmg, AoE 300, Transformation.', fx: 'stormWave', cd: 35 },
+        { variant: 5, n: 'Eistornado', e: '🌪', el: 'water', d: '154 Dmg, AoE 300, Beschwörung.', fx: 'iceTornado', cd: 23 },
+        { variant: 6, n: 'Gefrierböe', e: '🌨', el: 'water', d: '256 Dmg, AoE 300, Globaler Sturm.', fx: 'freezeGust', cd: 38 },
+        { variant: 7, n: 'Schneesturm', e: '❄', el: 'water', d: '151 Dmg, AoE 300, Transformation.', fx: 'snowStorm', cd: 26 },
+        { variant: 8, n: 'Frostwirbel', e: '🌀', el: 'water', d: '184 Dmg, AoE 300, Beschwörung.', fx: 'frostWhirl', cd: 30 },
+        { variant: 9, n: 'Eisschauer', e: '🌨', el: 'water', d: '253 Dmg, AoE 300, Globaler Sturm.', fx: 'iceShower', cd: 36 },
       ],
       'water+nature': [
         { variant: 1, n: 'Sumpf des Lebens', e: '🌱', el: 'nature', d: 'Heil-Zone 8s + Slow.', fx: 'lifeSwamp', cd: 18 },
         { variant: 2, n: 'Riesen-Seerose', e: '🌸', el: 'water', d: 'Riesiges Schild absorbiert Schaden 8s.', fx: 'giantLily', cd: 19 },
         { variant: 3, n: 'Gift-Regen', e: '☠', el: 'nature', d: 'Saurer Regen 8s, 20 Dmg/s + Gift.', fx: 'acidRain', cd: 20 },
+        { variant: 4, n: 'Giftflut', e: '☠', el: 'nature', d: '284 Dmg, AoE 300, Transformation.', fx: 'poisonFlood', cd: 31 },
+        { variant: 5, n: 'Rankentauchgang', e: '🌿', el: 'nature', d: '195 Dmg, AoE 300, Beschwörung.', fx: 'vineDive', cd: 40 },
+        { variant: 6, n: 'Sumpfgas', e: '💨', el: 'nature', d: '224 Dmg, AoE 300, Globaler Sturm.', fx: 'swampGas', cd: 34 },
+        { variant: 7, n: 'Algenwall', e: '🌊', el: 'water', d: '154 Dmg, AoE 300, Transformation.', fx: 'algaeWall', cd: 36 },
+        { variant: 8, n: 'Tiefenwurzel', e: '🌱', el: 'nature', d: '197 Dmg, AoE 300, Beschwörung.', fx: 'deepRoot', cd: 34 },
+        { variant: 9, n: 'Meerespflanze', e: '🌿', el: 'water', d: '233 Dmg, AoE 300, Globaler Sturm.', fx: 'seaPlant', cd: 23 },
       ],
       'water+light': [
         { variant: 1, n: 'Heiliges Wasser', e: '✨', el: 'light', d: 'Boden-Zone: 5s Unverwundbar für Team.', fx: 'holyWater', cd: 22 },
         { variant: 2, n: 'Prisma-Reflektion', e: '🌈', el: 'light', d: 'Schilde reflektieren Strahlen auf Gegner.', fx: 'prismaRefract', cd: 20 },
         { variant: 3, n: 'Spiegelkabinett', e: '🪞', el: 'light', d: 'Erzeugt 3 Decoy-Klone von dir.', fx: 'mirrorRoom', cd: 23 },
+        { variant: 4, n: 'Heilwasser', e: '✨', el: 'light', d: '211 Dmg, AoE 300, Transformation.', fx: 'healWater', cd: 29 },
+        { variant: 5, n: 'Lichtreflexion', e: '🌈', el: 'light', d: '234 Dmg, AoE 300, Beschwörung.', fx: 'lightReflect', cd: 39 },
+        { variant: 6, n: 'Prismaflut', e: '🌊', el: 'water', d: '210 Dmg, AoE 300, Globaler Sturm.', fx: 'prismaFlood', cd: 23 },
+        { variant: 7, n: 'Strahlende Quelle', e: '✨', el: 'light', d: '266 Dmg, AoE 300, Transformation.', fx: 'radiantSpring', cd: 30 },
+        { variant: 8, n: 'Heiliger Regen', e: '🌧', el: 'water', d: '237 Dmg, AoE 300, Beschwörung.', fx: 'holyRain', cd: 29 },
+        { variant: 9, n: 'Spiegelflut', e: '🪞', el: 'water', d: '180 Dmg, AoE 300, Globaler Sturm.', fx: 'mirrorFlood', cd: 38 },
       ],
       'water+darkness': [
         { variant: 1, n: 'Kraken', e: '🐙', el: 'darkness', d: '180 Dmg-Zone 8s + Stun.', fx: 'kraken', cd: 21 },
         { variant: 2, n: 'Ertrinken', e: '🫧', el: 'water', d: 'Gegner schweben in Blasen, DoT 8s.', fx: 'drown', cd: 18 },
         { variant: 3, n: 'Tinte', e: '🌑', el: 'darkness', d: 'Komplette Dunkelheit: Globaler Blind.', fx: 'ink', cd: 22 },
+        { variant: 4, n: 'Schwarzwasser', e: '🌑', el: 'darkness', d: '266 Dmg, AoE 300, Transformation.', fx: 'blackWater', cd: 36 },
+        { variant: 5, n: 'Abgrundflut', e: '🐙', el: 'darkness', d: '285 Dmg, AoE 300, Beschwörung.', fx: 'abyssFlood', cd: 23 },
+        { variant: 6, n: 'Tintennebel', e: '🌑', el: 'darkness', d: '218 Dmg, AoE 300, Globaler Sturm.', fx: 'inkFog', cd: 21 },
+        { variant: 7, n: 'Schattentauchgang', e: '🌊', el: 'water', d: '299 Dmg, AoE 300, Transformation.', fx: 'shadowDive', cd: 27 },
+        { variant: 8, n: 'Tiefseegeist', e: '👻', el: 'darkness', d: '154 Dmg, AoE 300, Beschwörung.', fx: 'deepGhost', cd: 23 },
+        { variant: 9, n: 'Krakenschwärze', e: '🐙', el: 'darkness', d: '180 Dmg, AoE 300, Globaler Sturm.', fx: 'krakenDark', cd: 35 },
       ],
       'earth+wind': [
         { variant: 1, n: 'Sandsturm', e: '🌪', el: 'earth', d: 'Blind 5s + DoT in Arena.', fx: 'sandstorm', cd: 23 },
         { variant: 2, n: 'Erosion', e: '🌬', el: 'earth', d: 'Entfernt Rüstung+Curse permanent 8s.', fx: 'erosion', cd: 24 },
         { variant: 3, n: 'Steinschlag', e: '🪨', el: 'wind', d: 'Wind schleudert Felsen: Physik-Chaos.', fx: 'rockThrow', cd: 18 },
+        { variant: 4, n: 'Sandschneise', e: '🌪', el: 'earth', d: '159 Dmg, AoE 300, Transformation.', fx: 'sandCut', cd: 20 },
+        { variant: 5, n: 'Felssturm', e: '🪨', el: 'earth', d: '241 Dmg, AoE 300, Beschwörung.', fx: 'rockStorm', cd: 39 },
+        { variant: 6, n: 'Erosionsböe', e: '🌬', el: 'earth', d: '191 Dmg, AoE 300, Globaler Sturm.', fx: 'erosionGust', cd: 39 },
+        { variant: 7, n: 'Staubwirbel', e: '🌪', el: 'wind', d: '272 Dmg, AoE 300, Transformation.', fx: 'dustWhirl', cd: 33 },
+        { variant: 8, n: 'Steinschlagorkan', e: '🪨', el: 'wind', d: '153 Dmg, AoE 300, Beschwörung.', fx: 'rockHurricane', cd: 35 },
+        { variant: 9, n: 'Wüstensturm', e: '🌪', el: 'earth', d: '292 Dmg, AoE 300, Globaler Sturm.', fx: 'desertStorm', cd: 24 },
       ],
       'earth+nature': [
         { variant: 1, n: 'Weltenbaum', e: '🌳', el: 'nature', d: 'Riesenwand + Team voll heilen.', fx: 'worldTree', cd: 23 },
         { variant: 2, n: 'Erd-Spieße', e: '🌵', el: 'earth', d: 'Wald aus Steinspießen aus dem Boden.', fx: 'earthSpikes', cd: 21 },
         { variant: 3, n: 'Lebende Festung', e: '🏰', el: 'earth', d: 'Team: Stein-Rüstung -40% Schaden 8s.', fx: 'livingFortress', cd: 20 },
+        { variant: 4, n: 'Rankenfels', e: '🌿', el: 'nature', d: '281 Dmg, AoE 300, Transformation.', fx: 'vineRock', cd: 35 },
+        { variant: 5, n: 'Erdwurzel', e: '🌳', el: 'nature', d: '270 Dmg, AoE 300, Beschwörung.', fx: 'earthRoot', cd: 38 },
+        { variant: 6, n: 'Steinwald', e: '🌵', el: 'earth', d: '272 Dmg, AoE 300, Globaler Sturm.', fx: 'stoneForest', cd: 31 },
+        { variant: 7, n: 'Felsspross', e: '🌱', el: 'nature', d: '207 Dmg, AoE 300, Transformation.', fx: 'rockSprout', cd: 25 },
+        { variant: 8, n: 'Bodenwucherung', e: '🌿', el: 'nature', d: '254 Dmg, AoE 300, Beschwörung.', fx: 'groundGrowth', cd: 38 },
+        { variant: 9, n: 'Lebender Stein', e: '🗿', el: 'earth', d: '246 Dmg, AoE 300, Globaler Sturm.', fx: 'livingStone', cd: 38 },
       ],
       'earth+light': [
         { variant: 1, n: 'Diamant-Haut', e: '💎', el: 'light', d: 'Team 5s unverwundbar.', fx: 'diamondSkin', cd: 22 },
         { variant: 2, n: 'Kristall-Turm', e: '🔫', el: 'earth', d: 'Turm schießt Laser auf Gegner.', fx: 'crystalTower', cd: 20 },
         { variant: 3, n: 'Licht-Brechung', e: '🔷', el: 'light', d: 'Kristalle verstärken alle Projektile 8s.', fx: 'lightRefract', cd: 18 },
+        { variant: 4, n: 'Kristallglanz', e: '💎', el: 'light', d: '294 Dmg, AoE 300, Transformation.', fx: 'crystalShine', cd: 37 },
+        { variant: 5, n: 'Leuchtstein', e: '🔷', el: 'earth', d: '251 Dmg, AoE 300, Beschwörung.', fx: 'glowStone', cd: 38 },
+        { variant: 6, n: 'Diamantblitz', e: '💎', el: 'light', d: '166 Dmg, AoE 300, Globaler Sturm.', fx: 'diamondFlash', cd: 27 },
+        { variant: 7, n: 'Edelsteinlicht', e: '💠', el: 'light', d: '268 Dmg, AoE 300, Transformation.', fx: 'gemLight', cd: 39 },
+        { variant: 8, n: 'Mineralaura', e: '🔷', el: 'earth', d: '153 Dmg, AoE 300, Beschwörung.', fx: 'mineralAura', cd: 39 },
+        { variant: 9, n: 'Lichtquarz', e: '💎', el: 'light', d: '287 Dmg, AoE 300, Globaler Sturm.', fx: 'lightQuartz', cd: 31 },
       ],
       'earth+darkness': [
         { variant: 1, n: 'Zombie-Hände', e: '💀', el: 'darkness', d: 'Hände halten alle fest Root 4s + 100 Dmg.', fx: 'zombieHands', cd: 22 },
         { variant: 2, n: 'Sarkophag', e: '⚰', el: 'earth', d: 'Schließt Gegner komplett ein (Banish 5s).', fx: 'sarcophagus', cd: 19 },
         { variant: 3, n: 'Erd-Spalte', e: '🕳', el: 'earth', d: 'Boden öffnet sich, Gegner fallen rein.', fx: 'groundSplit', cd: 18 },
+        { variant: 4, n: 'Grabstein', e: '💀', el: 'darkness', d: '182 Dmg, AoE 300, Transformation.', fx: 'gravestone', cd: 35 },
+        { variant: 5, n: 'Schattenfels', e: '🪨', el: 'earth', d: '179 Dmg, AoE 300, Beschwörung.', fx: 'shadowRock', cd: 30 },
+        { variant: 6, n: 'Dunkle Erde', e: '🌑', el: 'darkness', d: '161 Dmg, AoE 300, Globaler Sturm.', fx: 'darkEarth', cd: 24 },
+        { variant: 7, n: 'Totenwächter', e: '💀', el: 'darkness', d: '163 Dmg, AoE 300, Transformation.', fx: 'deathGuard', cd: 34 },
+        { variant: 8, n: 'Erdfluch', e: '🕳', el: 'earth', d: '240 Dmg, AoE 300, Beschwörung.', fx: 'earthCurse', cd: 37 },
+        { variant: 9, n: 'Untergrundgeist', e: '👻', el: 'darkness', d: '279 Dmg, AoE 300, Globaler Sturm.', fx: 'underGhost', cd: 31 },
       ],
       'wind+nature': [
         { variant: 1, n: 'Pollenflug', e: '🌸', el: 'nature', d: 'Alle Gegner schlafen 3s ein.', fx: 'pollenSleep', cd: 18 },
         { variant: 2, n: 'Sporen-Tornado', e: '🌪', el: 'nature', d: 'Giftiger Wirbelwind wandert 5s.', fx: 'sporeTornado', cd: 23 },
         { variant: 3, n: 'Blättertanz', e: '🍃', el: 'wind', d: 'Team unsichtbar + +30% Speed 5s.', fx: 'leafDance', cd: 21 },
+        { variant: 4, n: 'Pollenwirbel', e: '🌸', el: 'nature', d: '208 Dmg, AoE 300, Transformation.', fx: 'pollenWhirl', cd: 25 },
+        { variant: 5, n: 'Sporensturm', e: '🌪', el: 'nature', d: '265 Dmg, AoE 300, Beschwörung.', fx: 'sporeStorm', cd: 29 },
+        { variant: 6, n: 'Blatttornado', e: '🍃', el: 'wind', d: '183 Dmg, AoE 300, Globaler Sturm.', fx: 'leafTornado', cd: 22 },
+        { variant: 7, n: 'Rankensturm', e: '🌿', el: 'nature', d: '296 Dmg, AoE 300, Transformation.', fx: 'vineStorm', cd: 37 },
+        { variant: 8, n: 'Giftböe', e: '☠', el: 'nature', d: '232 Dmg, AoE 300, Beschwörung.', fx: 'poisonGust', cd: 26 },
+        { variant: 9, n: 'Waldtornado', e: '🌳', el: 'wind', d: '250 Dmg, AoE 300, Globaler Sturm.', fx: 'forestTornado', cd: 29 },
       ],
       'wind+light': [
         { variant: 1, n: 'Licht-Geschwindigkeit', e: '💫', el: 'light', d: 'Zeitlupe 4s für Gegner, Normalzeit dich.', fx: 'lightSpeed', cd: 21 },
         { variant: 2, n: 'Nordlicht', e: '🌌', el: 'light', d: 'Schleier: Gegner laufen in falsche Richtung.', fx: 'northernLights', cd: 18 },
         { variant: 3, n: 'Blitzgewitter', e: '⛈', el: 'wind', d: 'Elektrischer Sturm: Chain-Lightning.', fx: 'lightningStorm', cd: 19 },
+        { variant: 4, n: 'Nordlichtbogen', e: '🌌', el: 'light', d: '280 Dmg, AoE 300, Transformation.', fx: 'auroraArc', cd: 39 },
+        { variant: 5, n: 'Lichtböe', e: '💫', el: 'light', d: '202 Dmg, AoE 300, Beschwörung.', fx: 'lightGust', cd: 33 },
+        { variant: 6, n: 'Blitzsturm', e: '⛈', el: 'wind', d: '187 Dmg, AoE 300, Globaler Sturm.', fx: 'flashStorm', cd: 39 },
+        { variant: 7, n: 'Leuchtwind', e: '🌬', el: 'wind', d: '165 Dmg, AoE 300, Transformation.', fx: 'glowWind', cd: 21 },
+        { variant: 8, n: 'Strahlende Böe', e: '✨', el: 'light', d: '193 Dmg, AoE 300, Beschwörung.', fx: 'radiantGust', cd: 27 },
+        { variant: 9, n: 'Lichtblitzwirbel', e: '⚡', el: 'wind', d: '249 Dmg, AoE 300, Globaler Sturm.', fx: 'lightFlashWhirl', cd: 28 },
       ],
       'wind+darkness': [
         { variant: 1, n: 'Schatten-Schritt', e: '🌑', el: 'darkness', d: 'Teleport zu jedem Gegner 1× und schlägt zu.', fx: 'shadowStep', cd: 20 },
         { variant: 2, n: 'Vakuum der Leere', e: '🕳', el: 'darkness', d: 'Schwarzes Loch: zieht alles rein, Low-HP-Kill.', fx: 'voidVacuum', cd: 19 },
         { variant: 3, n: 'Nachtmahr', e: '👁', el: 'darkness', d: 'Gegner sehen Geister: Chaos + Fear 3s.', fx: 'nightmare', cd: 23 },
+        { variant: 4, n: 'Schattensturm', e: '🌑', el: 'darkness', d: '266 Dmg, AoE 300, Transformation.', fx: 'shadowStorm', cd: 31 },
+        { variant: 5, n: 'Leerenböe', e: '🕳', el: 'darkness', d: '160 Dmg, AoE 300, Beschwörung.', fx: 'voidGust', cd: 21 },
+        { variant: 6, n: 'Flüsterfinsternis', e: '👁', el: 'darkness', d: '176 Dmg, AoE 300, Globaler Sturm.', fx: 'whisperDark', cd: 35 },
+        { variant: 7, n: 'Nachtwind', e: '🌬', el: 'wind', d: '195 Dmg, AoE 300, Transformation.', fx: 'nightWind', cd: 26 },
+        { variant: 8, n: 'Dunkler Wirbel', e: '🌀', el: 'darkness', d: '215 Dmg, AoE 300, Beschwörung.', fx: 'darkWhirl', cd: 25 },
+        { variant: 9, n: 'Abgrundwind', e: '🌑', el: 'wind', d: '198 Dmg, AoE 300, Globaler Sturm.', fx: 'abyssWind', cd: 21 },
       ],
       'nature+light': [
         { variant: 1, n: 'Feen-Staub', e: '🧚', el: 'light', d: 'Verwandelt Gegner kurz in Tiere (Polymorph).', fx: 'fairyDust', cd: 21 },
         { variant: 2, n: 'Lebens-Zyklus', e: '🌙', el: 'nature', d: 'Tötet alle Minions, heilt Team voll.', fx: 'lifeCycle', cd: 18 },
         { variant: 3, n: 'Mondlichtung', e: '✨', el: 'light', d: 'Zone der Ruhe 8s: kein Schaden möglich.', fx: 'moonClear', cd: 18 },
+        { variant: 4, n: 'Heilige Blüte', e: '🌸', el: 'light', d: '248 Dmg, AoE 300, Transformation.', fx: 'holyBlossom', cd: 32 },
+        { variant: 5, n: 'Lichtranke', e: '🌿', el: 'nature', d: '190 Dmg, AoE 300, Beschwörung.', fx: 'lightVine', cd: 28 },
+        { variant: 6, n: 'Strahlende Pflanze', e: '✨', el: 'nature', d: '217 Dmg, AoE 300, Globaler Sturm.', fx: 'radiantPlant', cd: 39 },
+        { variant: 7, n: 'Lebenslicht', e: '🌙', el: 'light', d: '164 Dmg, AoE 300, Transformation.', fx: 'lifeLight', cd: 21 },
+        { variant: 8, n: 'Feenglanz', e: '🧚', el: 'light', d: '189 Dmg, AoE 300, Beschwörung.', fx: 'fairyShine', cd: 34 },
+        { variant: 9, n: 'Heiligtumswald', e: '🌳', el: 'nature', d: '188 Dmg, AoE 300, Globaler Sturm.', fx: 'sanctuaryForest', cd: 21 },
       ],
       'nature+darkness': [
         { variant: 1, n: 'Seuche', e: '☠', el: 'nature', d: 'Ansteckender Virus springt zwischen Gegnern.', fx: 'plague', cd: 20 },
         { variant: 2, n: 'Fleischfressende Pflanze', e: '🌱', el: 'darkness', d: 'Verschlingt Gegner, kauen-DoT 5s.', fx: 'carnivousPlant', cd: 20 },
         { variant: 3, n: 'Todes-Blüte', e: '💀', el: 'nature', d: 'Bei Kill: Dornen-Explosion in alle Richtungen.', fx: 'deathBloom', cd: 23 },
+        { variant: 4, n: 'Fauler Spross', e: '🌱', el: 'nature', d: '211 Dmg, AoE 300, Transformation.', fx: 'rotSprout', cd: 28 },
+        { variant: 5, n: 'Giftige Finsternis', e: '☠', el: 'darkness', d: '294 Dmg, AoE 300, Beschwörung.', fx: 'toxicDark', cd: 33 },
+        { variant: 6, n: 'Todesranke', e: '💀', el: 'nature', d: '183 Dmg, AoE 300, Globaler Sturm.', fx: 'deathVine', cd: 22 },
+        { variant: 7, n: 'Verwesungsspore', e: '☠', el: 'nature', d: '197 Dmg, AoE 300, Transformation.', fx: 'decaySpore', cd: 32 },
+        { variant: 8, n: 'Fluchblüte', e: '🌸', el: 'darkness', d: '170 Dmg, AoE 300, Beschwörung.', fx: 'curseBlossom', cd: 27 },
+        { variant: 9, n: 'Pestwald', e: '🌳', el: 'nature', d: '194 Dmg, AoE 300, Globaler Sturm.', fx: 'plagueForest', cd: 21 },
       ],
       'light+darkness': [
         { variant: 1, n: 'Eclipse', e: '🌗', el: 'darkness', d: 'Verdunkelt Sonne: 220 True Dmg global.', fx: 'eclipse', cd: 22 },
         { variant: 2, n: 'Gleichgewicht', e: '⚖', el: 'light', d: 'Tauscht HP von dir und Gegner (riskant!).', fx: 'balance', cd: 23 },
         { variant: 3, n: 'Yin & Yang', e: '☯', el: 'light', d: 'Zone 8s: Innen heilst du, außen Dmg.', fx: 'yinYang', cd: 18 },
+        { variant: 4, n: 'Schatteneclipse', e: '🌗', el: 'darkness', d: '210 Dmg, AoE 300, Transformation.', fx: 'shadowEclipse', cd: 26 },
+        { variant: 5, n: 'Dämmerlicht', e: '🌅', el: 'light', d: '194 Dmg, AoE 300, Beschwörung.', fx: 'dawnLight', cd: 40 },
+        { variant: 6, n: 'Zwielichtstrahl', e: '🌗', el: 'light', d: '158 Dmg, AoE 300, Globaler Sturm.', fx: 'twilightBeam', cd: 38 },
+        { variant: 7, n: 'Yin-Yang-Explosion', e: '☯', el: 'light', d: '222 Dmg, AoE 300, Transformation.', fx: 'yinYangExplosion', cd: 28 },
+        { variant: 8, n: 'Graues Gleichgewicht', e: '⚖', el: 'darkness', d: '237 Dmg, AoE 300, Beschwörung.', fx: 'grayBalance', cd: 32 },
+        { variant: 9, n: 'Grenzlicht', e: '🌗', el: 'light', d: '195 Dmg, AoE 300, Globaler Sturm.', fx: 'borderLight', cd: 33 },
       ],
     };
 
@@ -1500,7 +2000,34 @@
         const E = EL[el]; const d = document.createElement('div'); d.className = 'card';
         d.style.cssText = `border-color:${E.c}44;`;
         d.innerHTML = `<div class="cem">${E.e}</div><div class="cname" style="color:${E.c}">${E.n.toUpperCase()}</div><div class="crole">${ROLES[el]}</div>`;
-        d.onclick = () => pickCard(el, d);
+        d.onclick = () => { const t = d.querySelector('#cardPreview'); if (t) t.remove(); pickCard(el, d); };
+        // ── Hover preview ──
+        d.onmouseenter = () => {
+          const p = POOL[el]; if (!p) return;
+          const lmb = rndFrom(p.lmb || []), rmb = rndFrom(p.rmb || []), q = rndFrom(p.q || []);
+          let html = `<div class="cp-title" style="color:${E.c}">${E.e} ${E.n.toUpperCase()} — Vorschau</div>`;
+          if (lmb) html += `<div class="cp-sk">⚔ <b>${lmb.name}</b>: ${lmb.desc}</div>`;
+          if (rmb) html += `<div class="cp-sk">💥 <b>${rmb.name}</b>: ${rmb.desc}</div>`;
+          if (q) html += `<div class="cp-sk">🔷 <b>${q.name}</b>: ${q.desc}</div>`;
+          // Phase 2: show fusion preview
+          if (step === 1) {
+            const primEl = draftState.picks[0][curPlayer];
+            if (primEl) {
+              const fKey = [primEl, el].sort().join('+');
+              const fVars = FUS3[fKey] || FUS3[primEl + '+' + el] || FUS3[el + '+' + primEl];
+              if (fVars && fVars.length > 0) {
+                const fv = fVars[0];
+                html += `<div class="cp-fus">⚡ <b>FUSION: ${fv.e} ${fv.n}</b><br>${fv.d}</div>`;
+              } else {
+                html += `<div class="cp-fus" style="color:#ef4444">⚡ Keine Fusion mit ${EL[primEl].e} ${EL[primEl].n}</div>`;
+              }
+            }
+          }
+          const tip = document.createElement('div'); tip.id = 'cardPreview';
+          tip.style.borderTopColor = E.c; tip.innerHTML = html;
+          d.appendChild(tip);
+        };
+        d.onmouseleave = () => { const t = d.querySelector('#cardPreview'); if (t) t.remove(); };
         d.style.opacity = '0'; d.style.transform = 'translateY(10px)';
         setTimeout(() => { d.style.transition = 'all .3s'; d.style.opacity = '1'; d.style.transform = 'none'; }, 50 + i * 80);
         row.appendChild(d);
@@ -1583,6 +2110,7 @@
         fusionCDR: pass?.fusionCDR || 0, thorns: pass?.thorns || 0,
         photoRegen: pass?.photoRegen || 0, hpRegen: pass?.hpRegen || 0,
         dmgBuff: null, selfDot: null, teamCDRBuff: null,
+        _rageBuff: 0, _hasteBuff: 0, _focusBuff: 0,
         cds: { lmb: 0, rmb: 0, q: 0, e: 0, r: 0, dash: 0 }, chargeT: 0, chargeHeld: false, alive: true,
         _netKeys: {},
       };
@@ -1614,6 +2142,7 @@
       gamePhase = 0; phaseCD = 0; enemies = []; projs = []; parts = []; floats = []; fieldFx = []; lvAmbient = []; crates = []; lootOrbs = [];
       shakeX = shakeY = shakeT = shakeA = 0; ann = { text: '', t: 0, max: 0 };
       levelTimer = 0; killCount = 0; lastBossHp = 9999; p2autoT = 0; hazardTimer = 0; hazardActive = false;
+      _lvScale = 1; // reset scaling for guardians phase
       pickModifiers();
       // Spawn breakable crates
       const crateCount = 5 + Math.floor(Math.random() * 4);
@@ -1634,30 +2163,42 @@
     }
 
     function spawnGuardian(el, gx, gy) {
+      const scale = Math.pow(1.15, currentLevel);
+      const hp = Math.round(420 * scale);
       enemies.push({
         id: 'g' + Date.now(), type: 'guardian', element: el,
         x: clamp(gx, PAD + 38, GW - PAD - 38), y: clamp(gy, PAD + 38, GH - PAD - 38),
-        r: 30, hp: 420, maxHp: 420, spd: 66, atkT: 2.6, angle: 0, hitFlash: 0,
+        r: 30, hp, maxHp: hp, spd: 66, atkT: 2.6, angle: 0, hitFlash: 0,
         _wseed: Math.random() * 100,
         stunT: 0, slowT: 0, slowF: 1, blindT: 0, fearT: 0, frozenT: 0,
         burnT: 0, burnD: 0, burnTick: 0, poisonT: 0, poisonTick: 0, _curseDR: 0, _curseDur: 0,
       });
     }
 
+    let _lvScale = 1; // global damage scaling for enemies
     function spawnBoss() {
       const lv = LEVELS[currentLevel]; const bd = BOSS_DEFS[lv.boss];
+      const scale = Math.pow(1.15, currentLevel);
+      _lvScale = scale;
+      const scaledHp = Math.round(bd.hp * scale);
       const pos = safePos(bd.r + 8);
+      // Pick sub-elements for Avatar system (Phase 2/3)
+      const otherEls = ALL_EL.filter(e => e !== bd.boss_el);
+      const shuffled = [...otherEls].sort(() => Math.random() - .5);
       const boss = {
         id: 'boss', type: 'boss', element: bd.boss_el,
-        x: pos.x, y: pos.y, r: bd.r, hp: bd.hp, maxHp: bd.hp, phase: 0,
+        x: pos.x, y: pos.y, r: bd.r, hp: scaledHp, maxHp: scaledHp, phase: 0,
         spd: bd.phases[0].spd, atkT: 2.2, angle: 0, hitFlash: 0,
         stunT: 0, slowT: 0, slowF: 1, blindT: 0, fearT: 0, frozenT: 0,
         burnT: 0, burnD: 0, burnTick: 0, poisonT: 0, poisonTick: 0, _curseDR: 0, _curseDur: 0,
         specialCD: 7, specialIdx: 0,
         chargeCD: bd.phases[0].chargeCD, charging: false, chargeDx: 0, chargeDy: 0, chargeRemain: 0,
         minionCD: 15, minionSpawnCount: 0, phase3T: 5, orbRingCD: 5, _wseed: Math.random() * 100,
-        mSpawns: [...bd.phases.map((_, i) => bd.hp * (1 - (i / bd.phases.length))).slice(1)],
+        mSpawns: [...bd.phases.map((_, i) => scaledHp * (1 - (i / bd.phases.length))).slice(1)],
         bossEl: bd.boss_el, bossData: bd,
+        // Avatar system: sub-elements for Phase 2/3
+        _subEl1: shuffled[0], _subEl2: shuffled[1],
+        _healUses: 0, // nature boss heal counter
         // anti-stuck
         _stuckCheckX: pos.x, _stuckCheckY: pos.y, _stuckTimer: 0,
       };
@@ -1672,11 +2213,13 @@
       const lv = LEVELS[currentLevel];
       const bd = BOSS_DEFS[lv.boss];
       const ph = bd.phases[getBossPhase()];
+      const scale = Math.pow(1.15, currentLevel);
+      const mhp = Math.round((ph?.minionHP || 75) * scale);
       enemies.push({
         id: 'm' + Date.now() + Math.random(), type: 'minion',
         element: el || ph?.minionEl || lv.boss,
         x: clamp(x, PAD + 22, GW - PAD - 22), y: clamp(y, PAD + 22, GH - PAD - 22),
-        r: 18, hp: ph?.minionHP || 75, maxHp: ph?.minionHP || 75,
+        r: 18, hp: mhp, maxHp: mhp,
         spd: 148, atkT: 1.6, angle: 0, hitFlash: 0, _wseed: Math.random() * 100,
         stunT: 0, slowT: 0, slowF: 1, blindT: 0, fearT: 0, frozenT: 0,
         burnT: 0, burnD: 0, burnTick: 0, poisonT: 0, poisonTick: 0, _curseDR: 0, _curseDur: 0,
@@ -2131,7 +2674,18 @@
       });
     }
     function hitE(e, rawDmg, atkEl, srcP, burn, poison, slow, kb, stun, healHit, trueDmg = false) {
-      if (e.hp <= 0) return; let fd = trueDmg ? rawDmg : rawDmg * getEff(atkEl, e.element);
+      if (e.hp <= 0) return;
+      // ── Elemental Absorption: same-element heals instead of damages ──
+      if (!trueDmg && atkEl === e.element && !e.friendly) {
+        const absorbAmt = Math.round(rawDmg * 0.5);
+        e.hp = Math.min(e.maxHp, e.hp + absorbAmt);
+        spawnFT(e.x, e.y - 18, 'ABSORBIERT +' + absorbAmt, '#4ade80', 'bold 13px Rajdhani');
+        emitP(e.x, e.y, '#4ade80', 10, 60);
+        return;
+      }
+      // ── Rage buff: +40% dmg ──
+      if (srcP !== null && srcP !== undefined && players[srcP]?._rageBuff > 0) rawDmg = Math.round(rawDmg * 1.4);
+      let fd = trueDmg ? rawDmg : rawDmg * getEff(atkEl, e.element);
       if (e._curseDur > 0) fd *= (1 + e._curseDR);
       if (srcP !== null && srcP !== undefined && loadouts[srcP]?.passive?.pid === 'exek' && e.hp / e.maxHp < .15) fd *= 1.8;
       // brand passive: elemental crits apply burn
@@ -2324,7 +2878,7 @@
       if (pl.iframes > 0 || pl.invul > 0) return;
       if (pl.dodge > 0 && Math.random() < pl.dodge) { emitP(pl.x, pl.y, '#4fc3f7', 5, 48); return; }
       if (pl.reflectT > 0) { pl.reflectT = 0; emitP(pl.x, pl.y, '#90caf9', 8, 58); return; }
-      let dmg = rawDmg * (1 - (pl.dmgReduce || 0));
+      let dmg = rawDmg * _lvScale * (1 - (pl.dmgReduce || 0));
       if (pl.shield > 0) { pl.shield = Math.max(0, pl.shield - dmg); emitP(pl.x, pl.y, '#42a5f5', 5, 50); return; }
       if (pl.thorns) { const t = nearE(pl.x, pl.y); if (t) hitE(t, pl.thorns, 'earth', null); }
       pl.hp -= dmg; pl.iframes = .5; doShake(7, .22); spawnFT(pl.x, pl.y - 22, '-' + Math.round(dmg), '#f87171');
@@ -2336,6 +2890,15 @@
       emitP(e.x, e.y, EL[e.element].c, 30 + e.r, 165); doShake(12, .55);
       if (e.type === 'guardian') spawnFT(e.x, e.y - 20, 'WÄCHTER BESIEGT', '#f4c542');
       if (e.type === 'minion') spawnFT(e.x, e.y - 14, 'x', '#888');
+      // ── Buff orb drop (30% chance on minion/guardian death) ──
+      if ((e.type === 'minion' || e.type === 'guardian') && Math.random() < 0.3) {
+        const buffTypes = ['rage', 'haste', 'focus', 'vita'];
+        const bt = rndFrom(buffTypes);
+        const bColors = { rage: '#ef4444', haste: '#3b82f6', focus: '#eab308', vita: '#22c55e' };
+        const bEmojis = { rage: '🔥', haste: '⚡', focus: '🎯', vita: '💚' };
+        lootOrbs.push({ x: e.x, y: e.y, r: 7, life: 12, type: bt });
+        spawnFT(e.x, e.y - 28, bEmojis[bt], bColors[bt]);
+      }
       // asche passive: on-kill explosion
       for (const pl of players) {
         if (!pl.alive) continue;
@@ -2371,7 +2934,11 @@
         if (!pl.alive) return;
         // Tick down teamCDR buff
         if (pl.teamCDRBuff && pl.teamCDRBuff.t > 0) { pl.teamCDRBuff.t -= dt; if (pl.teamCDRBuff.t <= 0) pl.teamCDRBuff = null; }
-        const cdrMult = pl.teamCDRBuff ? (1 + pl.teamCDRBuff.f) : 1;
+        // ── Tick down loot buff timers ──
+        if (pl._rageBuff > 0) pl._rageBuff -= dt;
+        if (pl._hasteBuff > 0) pl._hasteBuff -= dt;
+        if (pl._focusBuff > 0) pl._focusBuff -= dt;
+        const cdrMult = (pl.teamCDRBuff ? (1 + pl.teamCDRBuff.f) : 1) * (pl._focusBuff > 0 ? 2 : 1);
         for (const k of ['lmb', 'rmb', 'q', 'e', 'r', 'dash']) if (pl.cds[k] > 0) pl.cds[k] = Math.max(0, pl.cds[k] - dt * cdrMult);
         if (pl.chargeHeld) pl.chargeT += dt;
       });
@@ -2447,7 +3014,7 @@
       if (dx && dy) { dx *= .707; dy *= .707; }
       const mov = !!(dx || dy);
       if (mov) pl.staticT = Math.min((pl.staticT || 0) + dt, 1); else pl.staticT = Math.max(0, (pl.staticT || 0) - dt * .5);
-      let spd = pl.spd * (pl.speedBuffT > 0 ? 1.5 : 1); if (pl.speedBuffT > 0) pl.speedBuffT -= dt;
+      let spd = pl.spd * (pl.speedBuffT > 0 ? 1.5 : 1) * (pl._hasteBuff > 0 ? 1.35 : 1); if (pl.speedBuffT > 0) pl.speedBuffT -= dt;
       // ─ v1.4: Enforce 35% minimum speed floor ─
       spd = Math.max(pl.spd * 0.35, spd);
       // ─ Slippery floor mod (only when hazard active) ─
@@ -2527,9 +3094,26 @@
         e.specialCD -= dt * rasendMult;
         if (e.specialCD <= 0 && !e.charging && !(e._reflektT > 0) && !(e._silenceT > 0)) {
           e.specialCD = (e._rasend ? 4 : 5.5) + Math.random() * 3;
-          const atks = bd?.specialAtks || [];
-          const atk = atks[e.specialIdx % atks.length]; e.specialIdx++;
+          let atks = bd?.specialAtks || [];
+          let atk = atks[e.specialIdx % atks.length]; e.specialIdx++;
+          // ─── AVATAR SYSTEM: use sub-element attacks in later phases ───
+          let useEl = e.element;
+          if (phIdx >= 2 && e._subEl2 && Math.random() < 0.25) {
+            const subBd = BOSS_DEFS[e._subEl2];
+            if (subBd?.specialAtks?.length) {
+              atk = rndFrom(subBd.specialAtks); useEl = e._subEl2;
+            }
+          } else if (phIdx >= 1 && e._subEl1 && Math.random() < 0.30) {
+            const subBd = BOSS_DEFS[e._subEl1];
+            if (subBd?.specialAtks?.length) {
+              atk = rndFrom(subBd.specialAtks); useEl = e._subEl1;
+            }
+          }
+          // Temporarily swap element for correct colors in the attack
+          const origEl = e.element;
+          e.element = useEl;
           doBossSpecial(e, tgt, atk, phIdx);
+          e.element = origEl;
         }
         // ─── REFLEKTOR AFFIX ───
         if (e._reflektor) {
@@ -2560,22 +3144,31 @@
         const prevPhase = e.phase; e.phase = phIdx;
         if (phIdx !== prevPhase) {
           doShake(24, .95); emitP(e.x, e.y, '#fff', 55, 230);
-          const pNames = ['Phase 1', 'Phase 2 — Aggro!', 'Phase 3 — ENRAGE!'];
-          showAnn(`💀 ${bd?.name || 'BOSS'} — ${pNames[phIdx]}`, 4);
+          e._healUses = 0; // reset nature boss heal counter
+          // Avatar system announcement
+          let pName = 'Phase 1';
+          if (phIdx === 1) {
+            pName = `Phase 2 — +${EL[e._subEl1]?.e || ''} ${EL[e._subEl1]?.n || ''}!`;
+          } else if (phIdx === 2) {
+            pName = `Phase 3 — ENRAGE! +${EL[e._subEl2]?.e || ''} ${EL[e._subEl2]?.n || ''}!`;
+          }
+          showAnn(`💀 ${bd?.name || 'BOSS'} — ${pName}`, 4);
         }
         // ─── ANTI-STUCK ───
         e._stuckTimer = (e._stuckTimer || 0) + dt;
-        if (e._stuckTimer >= 3.5) {
+        if (e._stuckTimer >= 2) {
           const dx2 = e.x - (e._stuckCheckX || e.x), dy2 = e.y - (e._stuckCheckY || e.y);
           const moved = Math.sqrt(dx2 * dx2 + dy2 * dy2);
           e._stuckCheckX = e.x; e._stuckCheckY = e.y; e._stuckTimer = 0;
-          if (moved < 20 && !e.stunT && !e.frozenT) {
+          // Only teleport if boss is far from all players (>200px)
+          const alivePlayers = players.filter(p => p.alive);
+          const nearestDist = alivePlayers.length > 0 ? Math.min(...alivePlayers.map(p => Math.sqrt((p.x - e.x) ** 2 + (p.y - e.y) ** 2))) : 0;
+          if (moved < 20 && !e.stunT && !e.frozenT && nearestDist > 200) {
             const np = safePos(e.r + 8);
-            // Visual teleport effect
-            emitP(e.x, e.y, EL[e.element].c, 25, 160);
+            emitP(e.x, e.y, EL[e.element].c, 30, 180);
             e.x = np.x; e.y = np.y;
-            emitP(e.x, e.y, EL[e.element].c, 25, 160);
-            spawnFT(e.x, e.y - 68, 'REPOSITION', EL[e.element].c);
+            emitP(e.x, e.y, EL[e.element].c, 30, 180);
+            spawnFT(e.x, e.y - 68, '⚡ REPOSITION', EL[e.element].c);
           }
         }
       }
@@ -2695,6 +3288,8 @@
           players.forEach(pl => { if (!pl.alive) return; pl.cds.r = Math.max(pl.cds.r, 8); spawnFT(pl.x, pl.y - 28, 'FUSION GESPERRT 8s', '#4ade80'); });
           break;
         case 'healing':
+          e._healUses = (e._healUses || 0) + 1;
+          if (e._healUses > 3) { spawnFT(e.x, e.y - 60, 'HEILKRAFT ERSCHÖPFT', '#666'); break; }
           e.hp = Math.min(e.maxHp, e.hp + e.maxHp * .06); spawnFT(e.x, e.y - 60, '+NATUR-HEILUNG', '#4ade80'); emitP(e.x, e.y, '#4ade80', 20, 80);
           break;
         // LIGHT BOSS
@@ -2735,7 +3330,13 @@
       const dx = tgt.x - e.x, dy = tgt.y - e.y, l = Math.sqrt(dx * dx + dy * dy) || 1;
       const bd = e.bossData;
       const pattern = bd?.phases[phIdx]?.atkPattern || 'spread3';
-      const col = EL[e.element].c, glow = EL[e.element].g;
+      // ── Avatar system: chance to use sub-element for normal attacks ──
+      let atkEl = e.element;
+      if (e.type === 'boss') {
+        if (phIdx >= 2 && e._subEl2 && Math.random() < 0.15) atkEl = e._subEl2;
+        else if (phIdx >= 1 && e._subEl1 && Math.random() < 0.25) atkEl = e._subEl1;
+      }
+      const col = EL[atkEl].c, glow = EL[atkEl].g;
       let cnt = 1, spr = 0, spd2 = 270, dmg = 16, extraBurn = null, extraPoison = null, extraSlow = null;
       if (e.type === 'boss') {
         // Parse pattern string
@@ -2754,21 +3355,21 @@
       } else if (e.type === 'minion') { cnt = 1; spd2 = 295; dmg = 12; }
       for (let i = 0; i < cnt; i++) {
         const a = Math.atan2(dy, dx) + (cnt > 1 ? (i - (cnt - 1) / 2) * spr : 0);
-        spP({ x: e.x, y: e.y, vx: Math.cos(a) * spd2, vy: Math.sin(a) * spd2, r: cnt > 4 ? 7 : 9, color: col, glow, dmg, team: 'e', el: e.element, burn: extraBurn, poison: extraPoison, slow: extraSlow, homing: pattern.includes('homing') && i < 2 });
+        spP({ x: e.x, y: e.y, vx: Math.cos(a) * spd2, vy: Math.sin(a) * spd2, r: cnt > 4 ? 7 : 9, color: col, glow, dmg, team: 'e', el: atkEl, burn: extraBurn, poison: extraPoison, slow: extraSlow, homing: pattern.includes('homing') && i < 2 });
       }
       // Extra patterns
-      if (pattern.includes('fire') && e.type === 'boss') { for (let i = 0; i < 4; i++) { const a2 = (i / 4) * Math.PI * 2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 200, vy: Math.sin(a2) * 200, r: 8, color: col, glow, dmg: 11, team: 'e', el: e.element, burn: { d: 10, dur: 2 } }); } }
-      if (pattern.includes('wave') && e.type === 'boss') { for (let i = 0; i < 8; i++) { const a2 = Math.atan2(dy, dx) + (i - 3.5) * .2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 320, vy: Math.sin(a2) * 320, r: 14, color: col, glow, dmg: 18, team: 'e', el: e.element, slow: { f: .4, dur: 2 } }); } }
+      if (pattern.includes('fire') && e.type === 'boss') { for (let i = 0; i < 4; i++) { const a2 = (i / 4) * Math.PI * 2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 200, vy: Math.sin(a2) * 200, r: 8, color: col, glow, dmg: 11, team: 'e', el: atkEl, burn: { d: 10, dur: 2 } }); } }
+      if (pattern.includes('wave') && e.type === 'boss') { for (let i = 0; i < 8; i++) { const a2 = Math.atan2(dy, dx) + (i - 3.5) * .2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 320, vy: Math.sin(a2) * 320, r: 14, color: col, glow, dmg: 18, team: 'e', el: atkEl, slow: { f: .4, dur: 2 } }); } }
       if (pattern.includes('roots')) { players.forEach(pl => { if (!pl.alive) return; if (Math.sqrt((pl.x - e.x) ** 2 + (pl.y - e.y) ** 2) < 200) pl.stunT = Math.max(pl.stunT || 0, .8); }); }
-      if (pattern.includes('meteor')) { const mx2 = tgt.x + (Math.random() - .5) * 120, my2 = tgt.y + (Math.random() - .5) * 120; fieldFx.push({ type: 'meter', x: mx2, y: my2, t: 1.1, r: 50, dmg: 55, el: e.element, burn: extraBurn, srcP: null }); }
+      if (pattern.includes('meteor')) { const mx2 = tgt.x + (Math.random() - .5) * 120, my2 = tgt.y + (Math.random() - .5) * 120; fieldFx.push({ type: 'meter', x: mx2, y: my2, t: 1.1, r: 50, dmg: 55, el: atkEl, burn: extraBurn, srcP: null }); }
       if (pattern.includes('blind')) { players.forEach(pl => { if (pl.alive && Math.random() < .35) pl.stunT = Math.max(pl.stunT || 0, 1.2); }); }
       if (pattern.includes('fear')) { if (Math.random() < .25) players.forEach(pl => { if (pl.alive) pl.stunT = Math.max(pl.stunT || 0, 1.5); }); }
       if (pattern.includes('drain')) { players.forEach(pl => { if (!pl.alive) return; const d2 = Math.min(8, pl.hp * .06); pl.hp -= d2; e.hp = Math.min(e.maxHp, e.hp + d2 * 1.5); }); }
       if (pattern.includes('curse')) { if (Math.random() < .2) players.forEach(pl => { if (pl.alive) { pl.burnT = 3; pl.burnD = 8; pl.burnTick = .5; spawnFT(pl.x, pl.y - 20, 'FLUCH', '#a855f7'); } }); }
-      if (pattern.includes('portal')) { for (let i = 0; i < 3; i++) { const ox = PAD + 80 + Math.random() * (GW - PAD * 2 - 160), oy = PAD + 80 + Math.random() * (GH - PAD * 2 - 160); spP({ x: ox, y: oy, vx: (tgt.x - ox) / 3, vy: (tgt.y - oy) / 3, r: 9, color: '#a855f7', glow: '#7e22ce', dmg: 16, team: 'e', el: e.element, throughWalls: true }); } }
+      if (pattern.includes('portal')) { for (let i = 0; i < 3; i++) { const ox = PAD + 80 + Math.random() * (GW - PAD * 2 - 160), oy = PAD + 80 + Math.random() * (GH - PAD * 2 - 160); spP({ x: ox, y: oy, vx: (tgt.x - ox) / 3, vy: (tgt.y - oy) / 3, r: 9, color: '#a855f7', glow: '#7e22ce', dmg: 16, team: 'e', el: atkEl, throughWalls: true }); } }
       if (pattern.includes('ring') && e.type === 'boss') { spawnOrbRing(e, tgt); }
-      if (pattern.includes('tidal')) { for (let i = 0; i < 3; i++)setTimeout(() => { if (!running || e.hp <= 0) return; for (let j = 0; j < 6; j++) { const a2 = (j / 6) * Math.PI * 2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 350, vy: Math.sin(a2) * 350, r: 10, color: '#42a5f5', glow: '#1e88e5', dmg: 16, team: 'e', el: e.element }); } }, i * 400); }
-      if (pattern.includes('fullBlast')) { for (let i = 0; i < 16; i++) { const a2 = (i / 16) * Math.PI * 2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 320, vy: Math.sin(a2) * 320, r: 9, color: '#fde68a', glow: '#f59e0b', dmg: 20, team: 'e', el: e.element, pierce: true }); } }
+      if (pattern.includes('tidal')) { for (let i = 0; i < 3; i++)setTimeout(() => { if (!running || e.hp <= 0) return; for (let j = 0; j < 6; j++) { const a2 = (j / 6) * Math.PI * 2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 350, vy: Math.sin(a2) * 350, r: 10, color: '#42a5f5', glow: '#1e88e5', dmg: 16, team: 'e', el: atkEl }); } }, i * 400); }
+      if (pattern.includes('fullBlast')) { for (let i = 0; i < 16; i++) { const a2 = (i / 16) * Math.PI * 2; spP({ x: e.x, y: e.y, vx: Math.cos(a2) * 320, vy: Math.sin(a2) * 320, r: 9, color: '#fde68a', glow: '#f59e0b', dmg: 20, team: 'e', el: atkEl, pierce: true }); } }
       if (pattern.includes('heal')) { e.hp = Math.min(e.maxHp, e.hp + e.maxHp * .04); }
     }
 
@@ -2967,7 +3568,7 @@
       document.getElementById('lcBossEmoji').textContent = bd.emoji;
       document.getElementById('lcTitle').textContent = bd.name + ' besiegt!';
       document.getElementById('lcBossName').textContent = lv.name.toUpperCase() + ' — ABGESCHLOSSEN';
-      document.getElementById('lcStats').innerHTML = `<div class="lc-stat"><b>${killCount}</b>Kills</div><div class="lc-stat"><b>${Math.ceil(levelTimer)}s</b>Zeit</div><div class="lc-stat"><b>${Math.ceil(Math.max(players[0].hp, 0))}</b>HP übrig P1</div>`;
+      document.getElementById('lcStats').innerHTML = `<div class="lc-stat"><b>${killCount}</b>Kills</div><div class="lc-stat"><b>${Math.ceil(levelTimer)}s</b>Zeit</div><div class="lc-stat"><b>${Math.ceil(Math.max(players[0]?.hp || 0, 0))}</b>HP übrig P1</div>`;
       const hasNext = currentLevel < LEVELS.length - 1;
       document.getElementById('btnNext').style.display = hasNext ? 'block' : 'none';
       if (!hasNext) setTimeout(() => { showScreen('win'); document.getElementById('winsub').textContent = `Alle 7 Elemental-Bosse wurden besiegt! Du hast ${killCount} Feinde getötet.`; }, 500);
@@ -3007,9 +3608,19 @@
         if (crates[i].hp <= 0) {
           const c = crates[i];
           emitP(c.x + 16, c.y + 16, '#a16207', 12, 80);
-          // Drop a Mana Spark
-          lootOrbs.push({ x: c.x + 16, y: c.y + 16, r: 6, life: 10, type: Math.random() < .5 ? 'cd' : 'hp' });
-          spawnFT(c.x + 16, c.y, '💎', '#60a5fa');
+          // Drop loot: 40% buff orb, 30% cd, 30% hp
+          const roll = Math.random();
+          if (roll < 0.4) {
+            const buffTypes = ['rage', 'haste', 'focus', 'vita'];
+            const bt = rndFrom(buffTypes);
+            const bEmojis = { rage: '🔥', haste: '⚡', focus: '🎯', vita: '💚' };
+            const bColors = { rage: '#ef4444', haste: '#3b82f6', focus: '#eab308', vita: '#22c55e' };
+            lootOrbs.push({ x: c.x + 16, y: c.y + 16, r: 7, life: 12, type: bt });
+            spawnFT(c.x + 16, c.y, bEmojis[bt], bColors[bt]);
+          } else {
+            lootOrbs.push({ x: c.x + 16, y: c.y + 16, r: 6, life: 10, type: roll < 0.7 ? 'cd' : 'hp' });
+            spawnFT(c.x + 16, c.y, '💎', '#60a5fa');
+          }
           crates.splice(i, 1);
         }
       }
@@ -3022,8 +3633,13 @@
           if (!pl.alive) continue;
           if (Math.sqrt((pl.x - o.x) ** 2 + (pl.y - o.y) ** 2) < pl.r + o.r + 8) {
             if (o.type === 'cd') { pl.cds.r = Math.max(0, pl.cds.r - 2); spawnFT(pl.x, pl.y - 24, 'ULTI -2s', '#60a5fa'); }
-            else if (o.type === 'heal') { pl.hp = Math.min(pl.maxHp, pl.hp + (o.val || 15)); spawnFT(pl.x, pl.y - 24, '+' + (o.val || 15) + ' HP', '#4ade80'); }
+            else if (o.type === 'heal' || o.type === 'hp') { pl.hp = Math.min(pl.maxHp, pl.hp + (o.val || 15)); spawnFT(pl.x, pl.y - 24, '+' + (o.val || 15) + ' HP', '#4ade80'); }
             else if (o.type === 'shield') { pl.shield = Math.min((pl.shield || 0) + (o.val || 25), 300); spawnFT(pl.x, pl.y - 24, '+' + (o.val || 25) + ' 🛡', '#93c5fd'); }
+            // ── Buff orb pickups ──
+            else if (o.type === 'rage') { pl._rageBuff = 12; spawnFT(pl.x, pl.y - 24, '🔥 WUT +40% DMG 12s', '#ef4444'); emitP(pl.x, pl.y, '#ef4444', 12, 70); }
+            else if (o.type === 'haste') { pl._hasteBuff = 12; spawnFT(pl.x, pl.y - 24, '⚡ HAST +35% SPD 12s', '#3b82f6'); emitP(pl.x, pl.y, '#3b82f6', 12, 70); }
+            else if (o.type === 'focus') { pl._focusBuff = 12; spawnFT(pl.x, pl.y - 24, '🎯 FOKUS 2×CDR 12s', '#eab308'); emitP(pl.x, pl.y, '#eab308', 12, 70); }
+            else if (o.type === 'vita') { pl.hp = Math.min(pl.maxHp, pl.hp + 30); spawnFT(pl.x, pl.y - 24, '💚 VITA +30 HP', '#22c55e'); emitP(pl.x, pl.y, '#22c55e', 12, 70); }
             else { pl.hp = Math.min(pl.maxHp, pl.hp + 15); spawnFT(pl.x, pl.y - 24, '+15 HP', '#4ade80'); }
             emitP(o.x, o.y, '#60a5fa', 8, 50);
             lootOrbs.splice(i, 1); break;
@@ -3106,16 +3722,24 @@
         ctx.restore();
       }
 
-      // ── Loot Orbs (Mana Sparks) ──
+      // ── Loot Orbs (Mana Sparks & Buff Orbs) ──
+      const _LOOT_COL = { cd: '#60a5fa', hp: '#4ade80', heal: '#4ade80', shield: '#93c5fd', rage: '#ef4444', haste: '#3b82f6', focus: '#eab308', vita: '#22c55e' };
+      const _LOOT_EMO = { rage: '🔥', haste: '⚡', focus: '🎯', vita: '💚' };
       for (const o of lootOrbs) {
         ctx.save();
         const pulse = .6 + Math.sin(Date.now() * .008) * .3;
         ctx.globalAlpha = pulse;
-        ctx.fillStyle = o.type === 'cd' ? '#60a5fa' : '#4ade80';
-        ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 14;
+        const oc = _LOOT_COL[o.type] || '#4ade80';
+        ctx.fillStyle = oc;
+        ctx.shadowColor = oc; ctx.shadowBlur = 16;
         ctx.beginPath(); ctx.arc(o.x, o.y, o.r + Math.sin(Date.now() * .005) * 1.5, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#fff'; ctx.globalAlpha = .7;
         ctx.beginPath(); ctx.arc(o.x, o.y, o.r * .35, 0, Math.PI * 2); ctx.fill();
+        // Show emoji for buff orbs
+        if (_LOOT_EMO[o.type]) {
+          ctx.globalAlpha = .9; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(_LOOT_EMO[o.type], o.x, o.y - o.r - 4);
+        }
         ctx.restore();
       }
 
@@ -3515,6 +4139,23 @@
           ctx.textAlign = isLeft ? 'left' : 'right';
           ctx.fillText('👻 STEALTH' + (pl.stealthCrit ? ' KRIT' : ''), isLeft ? hpX : hpX + HPW, elStripY + eH + 12);
           ctx.shadowBlur = 0;
+        }
+
+        // ── Active Buff indicators ──
+        const buffs = [];
+        if (pl._rageBuff > 0) buffs.push({ e: '🔥', lbl: 'WUT', t: pl._rageBuff, c: '#ef4444' });
+        if (pl._hasteBuff > 0) buffs.push({ e: '⚡', lbl: 'HAST', t: pl._hasteBuff, c: '#3b82f6' });
+        if (pl._focusBuff > 0) buffs.push({ e: '🎯', lbl: 'CDR', t: pl._focusBuff, c: '#eab308' });
+        if (buffs.length > 0) {
+          const buffY = hpY + HPH + 58;
+          const bStartX = isLeft ? hpX : (hpX + HPW - buffs.length * 52 + 8);
+          buffs.forEach((b, bi) => {
+            const bx = bStartX + bi * 52;
+            ctx.fillStyle = b.c + '22'; rr(bx, buffY, 48, 14, 3); ctx.fill();
+            ctx.strokeStyle = b.c + '66'; ctx.lineWidth = 1; rr(bx, buffY, 48, 14, 3); ctx.stroke();
+            ctx.font = 'bold 8px "Share Tech Mono"'; ctx.fillStyle = b.c; ctx.textAlign = 'center';
+            ctx.fillText(b.e + ' ' + Math.ceil(b.t) + 's', bx + 24, buffY + 10);
+          });
         }
 
         // ── SKILL ICONS (bottom, no overlap with HP) ──
